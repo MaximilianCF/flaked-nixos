@@ -24,6 +24,7 @@
       nixpkgs,
       flake-parts,
       home-manager,
+      nix-github-actions,
       ...
     }: # ros2-flake, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -59,6 +60,8 @@
       perSystem =
         {
           system,
+          pkgs,
+          config,
           ...
         }:
         {
@@ -69,14 +72,37 @@
 
           treefmt.config = {
             programs.nixfmt.enable = true;
+            programs.prettier = {
+              enable = true;
+              settings = {
+                tabWidth = 2;
+                semi = true;
+              };
+            };
           };
 
-          pre-commit.settings.hooks = {
-            convco.enable = true;
-            nixfmt-rfc-style.enable = true;
+          pre-commit.settings = {
+            hooks = {
+              convco = {
+                enable = true;
+                package = pkgs.convco;
+              };
+              nixfmt-rfc-style = {
+                enable = true;
+                package = pkgs.nixfmt-rfc-style;
+              };
+            };
+          };
+          devShells.default = pkgs.mkShell {
+            inputsFrom = [
+              config.pre-commit.devShell
+              config.treefmt.build.devShell
+            ]
+            ++ config.pre-commit.settings.enabledPackages;
           };
         };
     };
+
   nixConfig = {
     extra-substituters = [ "https://ros.cachix.org" ];
     extra-trusted-public-keys = [ "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo=" ];
