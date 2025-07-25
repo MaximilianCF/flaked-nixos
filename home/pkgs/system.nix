@@ -1,6 +1,7 @@
 { pkgs }:
 
-with pkgs; [
+with pkgs;
+[
   neovim
   vim
   tmux
@@ -20,5 +21,5 @@ with pkgs; [
   btop
   htop
   nix-bash-completions
-    
+
 ]

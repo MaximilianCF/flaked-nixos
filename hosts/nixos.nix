@@ -26,6 +26,8 @@
 
   time.timeZone = "America/Sao_Paulo";
 
+  nixpkgs.config.allowUnfree = true;
+
   i18n = {
     defaultLocale = "pt_BR.UTF-8";
     extraLocaleSettings = {
@@ -55,9 +57,9 @@
         user = "max";
       };
     };
-   
+
     desktopManager.gnome.enable = true;
-  
+
     printing.enable = true;
 
     pipewire = {
@@ -68,7 +70,7 @@
     };
 
     pulseaudio.enable = false;
-    
+
     openssh.enable = true;
   };
 
@@ -83,14 +85,25 @@
   users.users.max = {
     isNormalUser = true;
     description = "Maximilian";
-    extraGroups = [ "networkmanager" "wheel" "audio" "video" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "audio"
+      "video"
+    ];
     shell = pkgs.bash;
   };
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      trusted-users = [ "root" "@wheel" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
     };
     gc = {
       automatic = true;
@@ -106,4 +119,3 @@
 
   system.stateVersion = "25.05";
 }
-

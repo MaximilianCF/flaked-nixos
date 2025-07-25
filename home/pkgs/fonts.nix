@@ -1,6 +1,7 @@
 { pkgs }:
 
-with pkgs; [
+with pkgs;
+[
   nerd-fonts.jetbrains-mono
   nerd-fonts.ubuntu
   open-sans

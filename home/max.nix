@@ -12,7 +12,7 @@ in
   home.username = "max";
   home.homeDirectory = "/home/max";
 
-  home.packages = devPkgs ++ gnomePkgs ++ mediaPkgs ++ netPkgs ++ sysPkgs ++ fontsPkgs; 
+  home.packages = devPkgs ++ gnomePkgs ++ mediaPkgs ++ netPkgs ++ sysPkgs ++ fontsPkgs;
 
   programs.bash.enable = true;
 
@@ -25,4 +25,3 @@ in
   programs.home-manager.enable = true;
   home.stateVersion = "25.05";
 }
-

@@ -7,7 +7,13 @@
     nix-ros-overlay.url = "github:lopsided98/nix-ros-overlay/master";
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-ros-overlay, ... }:
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      nix-ros-overlay,
+      ...
+    }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -20,35 +26,39 @@
           nix-ros-overlay.overlays.default
         ];
       };
-    in {
+    in
+    {
       devShells.${system}.default = pkgs.mkShell {
         name = "ROS2 Project Dev Shell";
         packages = [
           pkgs.colcon
-          (with pkgs.rosPackages.jazzy; pkgs.buildEnv {
-            paths = [
-              ros-core
-              rclpy
-              ros-gz-sim
-              geometry-msgs
-              ament-cmake-core
-              python-cmake-module
-              turtlebot4-desktop
-              turtlebot4-simulator
-              # slam-toolbox
-              nav2-minimal-tb4-sim
-              nav2-minimal-tb3-sim
-              rqt-common-plugins
-              rqt-tf-tree
-              tf2-tools
-            ];
-          })
+          (
+            with pkgs.rosPackages.jazzy;
+            pkgs.buildEnv {
+              paths = [
+                ros-core
+                rclpy
+                ros-gz-sim
+                geometry-msgs
+                ament-cmake-core
+                python-cmake-module
+                turtlebot4-desktop
+                turtlebot4-simulator
+                # slam-toolbox
+                nav2-minimal-tb4-sim
+                nav2-minimal-tb3-sim
+                rqt-common-plugins
+                rqt-tf-tree
+                tf2-tools
+              ];
+            }
+          )
         ];
       };
       modules.ros2SystemPkgs = import ./ros2-full.nix { inherit pkgs; };
     };
   nixConfig = {
-   extra-substituters = [ "https://ros.cachix.org" ];
-   extra-trusted-public-keys = [ "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo=" ];
-  };  
+    extra-substituters = [ "https://ros.cachix.org" ];
+    extra-trusted-public-keys = [ "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo=" ];
+  };
 }

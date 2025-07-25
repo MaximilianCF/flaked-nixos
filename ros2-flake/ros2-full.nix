@@ -7,7 +7,8 @@ in
 {
   environment.systemPackages = [
     pkgs.colcon
-  ] ++ (with ros; [  
+  ]
+  ++ (with ros; [
     ros-core
     geometry-msgs
     ament-cmake-core
@@ -23,7 +24,7 @@ in
     tf2-tools
   ]);
   environment.variables = {
-      ROS_DISTRO = "jazzy";
-      ROS_VERSION = "2";
+    ROS_DISTRO = "jazzy";
+    ROS_VERSION = "2";
   };
 }

@@ -1,6 +1,7 @@
 { pkgs }:
 
-with pkgs; [
+with pkgs;
+[
   gnome-extension-manager
   gnome-tweaks
   gnome-applets
@@ -10,5 +11,5 @@ with pkgs; [
   gnomeExtensions.open-bar
   gnomeExtensions.window-on-top
   gnomeExtensions.vitals
-  
+
 ]
