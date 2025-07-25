@@ -6,35 +6,66 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     #ros2-flake.url = "./ros2-flake";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    git-hooks-nix = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-github-actions = {
+      url = "github:nix-community/nix-github-actions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }: #ros2-flake, ... }:
-      let  
-      system = "x86_64-linux";
-        pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        overlays = [ 
-        ];
-      };
-      in {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-        pkgs = pkgs;
+  outputs = inputs@{ self, nixpkgs, flake-parts, treefmt-nix, nix-github-actions, git-hooks-nix, home-manager, ... }: #ros2-flake, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        inputs.git-hooks-nix.flakeModule
+        inputs.treefmt-nix.flakeModule
+      ];
 
-        modules = [
-          ./hosts/nixos.nix
-          #ros2-flake.modules.ros2SystemPkgs
-          home-manager.nixosModules.home-manager
+      systems = nixpkgs.lib.systems.flakeExposed;
+  
+      flake = {
+        githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
+          outputs = self;
+          attribute = "checks";
+        };
+        nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux"; # ou seu sistema específico
+            modules = [
+              ./hosts/nixos.nix
+              #inputs.ros2-flake.nixosModules.ros2SystemPkgs
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.max = import ./home/max.nix;
+              }
+            ];
+          };
+        };  
+        perSystem =
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.max = import ./home/max.nix;
-          }
-          
-        ];
-      };
-    };      
+            self',
+            config,
+            inputs',
+            pkgs,
+            system,
+            lib,
+            ...
+          }:
+          {
+          treefmt.config = {
+            programs.nixfmt.enable = true;
+          };
+          pre-commit.settings.hooks = {
+            convco.enable = true;
+            nixfmt-rfc-style.enable = true;
+          };
+        };  
+      }; 
   nixConfig = {
     extra-substituters = [ "https://ros.cachix.org" ];
     extra-trusted-public-keys = [ "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo=" ];
