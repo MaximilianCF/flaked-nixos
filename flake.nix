@@ -23,9 +23,6 @@
       self,
       nixpkgs,
       flake-parts,
-      treefmt-nix,
-      nix-github-actions,
-      git-hooks-nix,
       home-manager,
       ...
     }: # ros2-flake, ... }:
@@ -61,12 +58,7 @@
       };
       perSystem =
         {
-          self',
-          config,
-          inputs',
-          pkgs,
           system,
-          lib,
           ...
         }:
         {
