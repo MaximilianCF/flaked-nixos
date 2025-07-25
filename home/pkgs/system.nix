@@ -19,5 +19,6 @@ with pkgs; [
   xscreensaver
   btop
   htop
-  
+  nix-bash-completions
+    
 ]

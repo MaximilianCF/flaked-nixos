@@ -15,5 +15,4 @@ with pkgs; [
   direnv
   nixos-shell
   vulnix
-  nix-bash-completions
 ]
