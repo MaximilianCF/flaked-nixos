@@ -5,11 +5,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    flake-utils.url = "github:numtide/flake-utils";
     #ros2-flake.url = "./ros2-flake";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, flake-utils, ... }: #ros2-flake, ... }:
+  outputs = { nixpkgs, home-manager, ... }: #ros2-flake, ... }:
       let  
       system = "x86_64-linux";
         pkgs = import nixpkgs {
