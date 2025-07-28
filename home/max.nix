@@ -19,10 +19,12 @@ in
   ];
 
   programs.bash.enable = true;
-
   programs.gh.enable = true;
-
   programs.direnv.enable = true;
+  programs.neovim.enable = true;
+  programs.tmux.enable = true;
+  programs.bat.enable = true;
+  programs.eza.enable = true;
 
   programs.java = {
     enable = true;
