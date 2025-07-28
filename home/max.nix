@@ -6,13 +6,12 @@ let
   mediaPkgs = import ./pkgs/media.nix { inherit pkgs; };
   netPkgs = import ./pkgs/net.nix { inherit pkgs; };
   sysPkgs = import ./pkgs/system.nix { inherit pkgs; };
-  fontsPkgs = import ./pkgs/fonts.nix { inherit pkgs; };
 in
 {
   home.username = "max";
   home.homeDirectory = "/home/max";
 
-  home.packages = devPkgs ++ gnomePkgs ++ mediaPkgs ++ netPkgs ++ sysPkgs ++ fontsPkgs;
+  home.packages = devPkgs ++ gnomePkgs ++ mediaPkgs ++ netPkgs ++ sysPkgs;
 
   imports = [
     ./modules/scripts/nixos-options.nix
