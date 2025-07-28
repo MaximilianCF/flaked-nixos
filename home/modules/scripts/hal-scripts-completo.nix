@@ -7,6 +7,7 @@
 
 let
   scripts = [
+    "nixos-options-fzf.sh"
     "nixos-upgrade.sh"
     "devshell-list.sh"
     "flake-diff.sh"
@@ -14,12 +15,14 @@ let
   ];
 in
 {
-  options.max.scripts.hal.enable = lib.mkEnableOption "Habilita o pacote HAL de scripts Nix/NixOS";
+  options.max.scripts.all.enable = lib.mkEnableOption "Habilita todos os scripts HAL declarativos";
 
-  config = lib.mkIf config.max.scripts.hal.enable {
+  config = lib.mkIf config.max.scripts.all.enable {
     home.packages = with pkgs; [
       fzf
       jq
+      curl
+      bat
     ];
 
     xdg.configFile = builtins.listToAttrs (
@@ -30,5 +33,10 @@ in
     );
 
     home.sessionPath = [ "$HOME/.config/bin" ];
+
+    # Opcional: avisa após build
+    home.activation.reportHalScripts = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      echo "🧠 Scripts HAL ativados: ${toString scripts}"
+    '';
   };
 }

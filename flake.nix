@@ -37,8 +37,7 @@
 
       flake = {
         githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
-          outputs = self;
-          attribute = "checks";
+          inherit (self) checks;
         };
         nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";

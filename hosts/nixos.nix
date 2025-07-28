@@ -26,21 +26,29 @@
 
   time.timeZone = "America/Sao_Paulo";
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "libsoup-2.74.3"
+    ];
+  };
 
-    fonts = {
+  fonts = {
     enableDefaultPackages = true;
 
     fontconfig = {
       enable = true;
       defaultFonts = {
         monospace = [ "JetBrainsMono Nerd Font" ];
-        sansSerif = [ "Open Sans" "Ubuntu" ];
+        sansSerif = [
+          "Open Sans"
+          "Ubuntu"
+        ];
         serif = [ "Ubuntu" ];
       };
     };
 
-    fonts = with pkgs; [
+    packages = with pkgs; [
       nerd-fonts.jetbrains-mono
       nerd-fonts.ubuntu
       open-sans

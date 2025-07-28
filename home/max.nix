@@ -14,8 +14,8 @@ in
   home.packages = devPkgs ++ gnomePkgs ++ mediaPkgs ++ netPkgs ++ sysPkgs;
 
   imports = [
-    ./modules/scripts/nixos-options.nix
-    ./modules/scripts/hal-scripts.nix
+    # ./modules/scripts/nixos-options.nix
+    ./modules/scripts/hal-scripts-completo.nix
   ];
 
   programs.bash.enable = true;
@@ -36,9 +36,8 @@ in
     userName = "Max";
     userEmail = "max@example.com";
   };
-  
-  max.scripts.nixosOptions.enable = true;
-  max.scripts.hal.enable = true;
+
+  max.scripts.all.enable = true;
 
   programs.home-manager.enable = true;
   home.stateVersion = "25.05";

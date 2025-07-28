@@ -7,15 +7,23 @@
     nix-ros-overlay.url = "github:lopsided98/nix-ros-overlay";
   };
 
-  outputs = { self, nixpkgs, flake-utils, nix-ros-overlay }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      nix-ros-overlay,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         overlays = [ nix-ros-overlay.overlays.default ];
         pkgs = import nixpkgs {
           inherit system overlays;
           config.allowUnfree = true;
         };
-      in {
+      in
+      {
         devShells.default = pkgs.mkShell {
           name = "ros2-dev-shell";
           buildInputs = with pkgs; [
@@ -31,6 +39,6 @@
             echo "🤖 Ambiente ROS2 ativo! Rode: colcon build && source install/setup.bash"
           '';
         };
-      });
+      }
+    );
 }
-

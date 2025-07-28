@@ -1,9 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   scriptName = "nixos-options-fzf";
-in {
-  options.max.scripts.nixosOptions.enable = lib.mkEnableOption "Enable NixOS/Home Manager options fuzzy finder";
+in
+{
+  options.max.scripts.nixosOptions.enable =
+    lib.mkEnableOption "Enable NixOS/Home Manager options fuzzy finder";
 
   config = lib.mkIf config.max.scripts.nixosOptions.enable {
     home.packages = with pkgs; [
@@ -13,7 +20,7 @@ in {
       bat # opcional para preview colorido
     ];
 
-    xdg.configFile."bin/${scriptName}".source = ../../scripts/${scriptName}.sh;
+    xdg.configFile."bin/${scriptName}".source = ../../../scripts/${scriptName}.sh;
 
     home.sessionPath = [ "$HOME/.config/bin" ];
 
