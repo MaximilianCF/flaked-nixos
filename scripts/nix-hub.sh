@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
+
+# 🧠 Força execução a partir da raiz do projeto
+cd "$(dirname "$0")/.."
 
 TITLE="🧠 Nix Hub TUI"
 PROMPT="👉 Escolha uma opção:"
@@ -33,19 +35,35 @@ run_option() {
       devshell-list
       ;;
     "🧪 Entrar em um devShell declarativo")
-      ALL_SHELLS=$(for path in . shell/*; do
-        [ -f "$path/flake.nix" ] || continue
-        nix flake show --json "$path" | jq -r --arg path "$path" '
-          .devShells."x86_64-linux" | keys[] | "\($path):\(. )"
-        ' 2>/dev/null
-      done)
+      echo "🔍 Buscando devShells declarativos..."
 
-      SELECTED=$(printf "%s\n" "$ALL_SHELLS" | fzf --prompt="Escolha o devShell → ")
+      ALL_SHELLS=$(
+        for path in . ./shell/*; do
+          [ -f "$path/flake.nix" ] || continue
+          nix flake show --json "$path" 2>/dev/null | jq -r --arg path "$path" '
+            .devShells."x86_64-linux" | keys[]? | "\($path):\(.)"
+          ' || true
+        done
+      )
+
+      if [ -z "$ALL_SHELLS" ]; then
+        echo "⚠️ Nenhum devShell encontrado."
+        read -rp "Pressione Enter para voltar ao menu..."
+        return
+      fi
+
+      SELECTED=$(printf "%s\n" "$ALL_SHELLS" | fzf --prompt="Escolha o devShell → " \
+        --preview '
+          FLAKE=$(echo {} | cut -d: -f1)
+          SHELL=$(echo {} | cut -d: -f2)
+          nix eval "$FLAKE"#devShells.x86_64-linux."$SHELL".packages --apply "toString" 2>/dev/null | fold -s
+        ' \
+        --preview-window=up:wrap --height=40% --border)
 
       if [ -n "$SELECTED" ]; then
         FLAKE_PATH=$(echo "$SELECTED" | cut -d: -f1)
         SHELL_NAME=$(echo "$SELECTED" | cut -d: -f2)
-        echo "🧪 nix develop $FLAKE_PATH#$SHELL_NAME"
+        echo "🧪 Entrando em: nix develop $FLAKE_PATH#$SHELL_NAME"
         nix develop "$FLAKE_PATH#$SHELL_NAME"
       fi
       ;;
