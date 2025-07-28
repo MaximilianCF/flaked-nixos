@@ -39,21 +39,32 @@
         githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
           inherit (self) checks;
         };
-        nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./hosts/nixos.nix
-            #inputs.ros2-flake.nixosModules.ros2SystemPkgs
-            home-manager.nixosModules.home-manager
-            {
-              nixpkgs.config = {
-                allowUnfree = true;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.max = import ./home/max.nix;
-            }
-          ];
+        nixosConfigurations = {
+          work = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = [
+              ./hosts/freedom.nix
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.max = import ../home/max.nix;
+              }
+            ];
+          };
+
+          home = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = [
+              ./hosts/zeppelin.nix
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.max = import ../home/max.nix;
+              }
+            ];
+          };
         };
       };
       perSystem =

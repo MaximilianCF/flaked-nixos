@@ -42,7 +42,7 @@ in
   };
 
   programs.git = {
-    package = gitFull;
+    package = pkgs.gitFull;
     enable = true;
     userName = "Max";
     userEmail = "max@example.com";
