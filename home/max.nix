@@ -25,8 +25,10 @@ in
 
   programs.direnv.enable = true;
 
-  programs.java.enable = true;
-  programs.java.package = pkgs.jdk;
+  programs.java = {
+    enable = true;
+    package = pkgs.jdk;
+  };
 
   programs.git = {
     enable = true;
