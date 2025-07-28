@@ -10,6 +10,7 @@ OPTIONS=(
   "📚 Ver opções declarativas (nixos-options-fzf)"
   "🧠 Comparar flake.lock (flake-diff)"
   "🛠 Listar DevShells disponíveis"
+  "🧪 Entrar em um devShell declarativo"
   "💡 Ver versão do sistema"
   "🚪 Sair"
 )
@@ -30,6 +31,13 @@ run_option() {
       ;;
     "🛠 Listar DevShells disponíveis")
       devshell-list
+      ;;
+    "🧪 Entrar em um devShell declarativo")
+      SHELL_SELECTED=$(nix flake show --json | jq -r '.devShells."x86_64-linux" | keys[]' | fzf --prompt="Escolha o devShell → ")
+      if [ -n "$SHELL_SELECTED" ]; then
+        echo "🔮 Entrando em nix develop .#$SHELL_SELECTED ..."
+        nix develop .#"$SHELL_SELECTED"
+      fi
       ;;
     "💡 Ver versão do sistema")
       echo -e "\n🔍 NixOS: $(nixos-version)"
