@@ -14,6 +14,10 @@ in
 
   home.packages = devPkgs ++ gnomePkgs ++ mediaPkgs ++ netPkgs ++ sysPkgs ++ fontsPkgs;
 
+  imports = [
+    ./modules/scripts/nixos-options.nix
+  ];
+
   programs.bash.enable = true;
 
   programs.git = {
@@ -21,10 +25,8 @@ in
     userName = "Max";
     userEmail = "max@example.com";
   };
-
-  imports = [ ./modules/scripts/nixos-options.nix ];
+  
   max.scripts.nixosOptions.enable = true;
-
 
   programs.home-manager.enable = true;
   home.stateVersion = "25.05";
