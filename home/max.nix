@@ -21,6 +21,13 @@ in
 
   programs.bash.enable = true;
 
+  programs.gh.enable = true;
+
+  programs.direnv.enable = true;
+
+  programs.java.enable = true;
+  programs.java.package = pkgs.jdk;
+
   programs.git = {
     enable = true;
     userName = "Max";
