@@ -3,7 +3,6 @@
 with pkgs;
 [
   vscode
-  git
   gh
   github-runner
   github-backup
