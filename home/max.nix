@@ -16,6 +16,7 @@ in
 
   imports = [
     ./modules/scripts/nixos-options.nix
+    ./modules/scripts/hal-scripts.nix
   ];
 
   programs.bash.enable = true;
@@ -27,6 +28,7 @@ in
   };
   
   max.scripts.nixosOptions.enable = true;
+  max.scripts.hal.enable = true;
 
   programs.home-manager.enable = true;
   home.stateVersion = "25.05";
