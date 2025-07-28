@@ -12,6 +12,7 @@ let
     "devshell-list.sh"
     "flake-diff.sh"
     "nix-gc-safe.sh"
+    "nix-hub.sh"
   ];
 in
 {

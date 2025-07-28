@@ -33,10 +33,20 @@ run_option() {
       devshell-list
       ;;
     "🧪 Entrar em um devShell declarativo")
-      SHELL_SELECTED=$(nix flake show --json | jq -r '.devShells."x86_64-linux" | keys[]' | fzf --prompt="Escolha o devShell → ")
-      if [ -n "$SHELL_SELECTED" ]; then
-        echo "🔮 Entrando em nix develop .#$SHELL_SELECTED ..."
-        nix develop .#"$SHELL_SELECTED"
+      ALL_SHELLS=$(for path in . shell/*; do
+        [ -f "$path/flake.nix" ] || continue
+        nix flake show --json "$path" | jq -r --arg path "$path" '
+          .devShells."x86_64-linux" | keys[] | "\($path):\(. )"
+        ' 2>/dev/null
+      done)
+
+      SELECTED=$(printf "%s\n" "$ALL_SHELLS" | fzf --prompt="Escolha o devShell → ")
+
+      if [ -n "$SELECTED" ]; then
+        FLAKE_PATH=$(echo "$SELECTED" | cut -d: -f1)
+        SHELL_NAME=$(echo "$SELECTED" | cut -d: -f2)
+        echo "🧪 nix develop $FLAKE_PATH#$SHELL_NAME"
+        nix develop "$FLAKE_PATH#$SHELL_NAME"
       fi
       ;;
     "💡 Ver versão do sistema")
