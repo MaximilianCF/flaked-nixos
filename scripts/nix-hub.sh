@@ -56,15 +56,32 @@ run_option() {
         --preview '
           FLAKE=$(echo {} | cut -d: -f1)
           SHELL=$(echo {} | cut -d: -f2)
-          nix eval "$FLAKE"#devShells.x86_64-linux."$SHELL".packages --apply "toString" 2>/dev/null | fold -s
+          if [ -z "$SHELL" ]; then
+            echo "⚠️ Esse flake não declara nenhum devShell."
+          else
+            nix eval "$FLAKE"#devShells.x86_64-linux."$SHELL".packages --apply "toString" 2>/dev/null | fold -s
+          fi
         ' \
         --preview-window=up:wrap --height=40% --border)
 
       if [ -n "$SELECTED" ]; then
         FLAKE_PATH=$(echo "$SELECTED" | cut -d: -f1)
         SHELL_NAME=$(echo "$SELECTED" | cut -d: -f2)
-        echo "🧪 Entrando em: nix develop $FLAKE_PATH#$SHELL_NAME"
-        nix develop "$FLAKE_PATH#$SHELL_NAME"
+
+        if [ -z "$SHELL_NAME" ]; then
+          echo "❌ Esse flake não define um devShell válido. Abortando."
+          read -rp "Pressione Enter para voltar ao menu..."
+          return
+        fi
+
+        echo "🧪 Testando entrada: nix develop $FLAKE_PATH#$SHELL_NAME"
+        if nix develop "$FLAKE_PATH#$SHELL_NAME" --command true; then
+          echo "✅ DevShell válido! Iniciando ambiente..."
+          nix develop "$FLAKE_PATH#$SHELL_NAME"
+        else
+          echo "❌ Erro: não foi possível entrar no devShell '$SHELL_NAME' de '$FLAKE_PATH'"
+          read -rp "Pressione Enter para voltar ao menu..."
+        fi
       fi
       ;;
     "💡 Ver versão do sistema")

@@ -18,11 +18,21 @@ in
     ./modules/scripts/hal-scripts-completo.nix
   ];
 
-  programs.bash.enable = true;
+  programs.bash = {
+    enable = true;
+  };
   programs.gh.enable = true;
-  programs.direnv.enable = true;
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+  };
   programs.neovim.enable = true;
-  programs.tmux.enable = true;
+  programs.tmux = {
+    shortcut = "a";
+    enable = true;
+    clock24 = true;
+
+  };
   programs.bat.enable = true;
   programs.eza.enable = true;
 
@@ -32,6 +42,7 @@ in
   };
 
   programs.git = {
+    package = gitFull;
     enable = true;
     userName = "Max";
     userEmail = "max@example.com";
