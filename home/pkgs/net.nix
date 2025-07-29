@@ -3,7 +3,7 @@
 with pkgs;
 [
   google-chrome
-  microsoft-edge
+  #microsoft-edge
   zapzap
   done
   fractal
