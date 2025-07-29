@@ -17,4 +17,5 @@ with pkgs;
   btop
   htop
   nix-bash-completions
+  tmuxp
 ]

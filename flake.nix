@@ -1,17 +1,30 @@
 {
-  description = "Sistema declarativo NixOS com Home Manager integrado + ROS2";
+  description = "Sistema declarativo NixOS com Home Manager integrado";
+
+  nixConfig = {
+    extra-substituters = [ "https://ros.cachix.org" ];
+    extra-trusted-public-keys = [ "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo=" ];
+  };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     #ros2-flake.url = "./ros2-flake";
+
     treefmt-nix.url = "github:numtide/treefmt-nix";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
+
     git-hooks-nix = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nix-github-actions = {
       url = "github:nix-community/nix-github-actions";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,28 +53,28 @@
           inherit (self) checks;
         };
         nixosConfigurations = {
-          work = nixpkgs.lib.nixosSystem {
+          tars = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
-              ./hosts/freedom.nix
+              ./hosts/tars.nix
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.users.max = import ../home/max.nix;
+                home-manager.users.max = import ./home/allhomes.nix;
               }
             ];
           };
 
-          home = nixpkgs.lib.nixosSystem {
+          hal9000 = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
-              ./hosts/zeppelin.nix
+              ./hosts/hal9000.nix
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.users.max = import ../home/max.nix;
+                home-manager.users.max = import ./home/allhomes.nix;
               }
             ];
           };
@@ -112,9 +125,4 @@
           };
         };
     };
-
-  nixConfig = {
-    extra-substituters = [ "https://ros.cachix.org" ];
-    extra-trusted-public-keys = [ "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo=" ];
-  };
 }

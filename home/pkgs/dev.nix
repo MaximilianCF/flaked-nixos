@@ -9,7 +9,6 @@ with pkgs;
   gh-copilot
   codex
   claude-code
-  git-credential-manager
   nixos-shell
   vulnix
 ]

@@ -1,0 +1,8 @@
+session_name: local
+windows:
+  - layout: even-horizontal
+    focus: true
+    panes:
+      - irssi
+      -
+    window_name: irssi

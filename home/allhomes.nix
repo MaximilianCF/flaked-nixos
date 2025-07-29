@@ -16,23 +16,23 @@ in
   imports = [
     # ./modules/scripts/nixos-options.nix
     ./modules/scripts/hal-scripts-completo.nix
+    ./modules/git/default.nix
+    ./modules/tmux/default.nix
   ];
 
   programs.bash = {
     enable = true;
   };
   programs.gh.enable = true;
+
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
+    nix-direnv.enable = true;
   };
-  programs.neovim.enable = true;
-  programs.tmux = {
-    shortcut = "a";
-    enable = true;
-    clock24 = true;
 
-  };
+  programs.neovim.enable = true;
+  programs.tmux.enable = true;
   programs.bat.enable = true;
   programs.eza.enable = true;
 
@@ -41,12 +41,7 @@ in
     package = pkgs.jdk;
   };
 
-  programs.git = {
-    package = pkgs.gitFull;
-    enable = true;
-    userName = "Max";
-    userEmail = "max@example.com";
-  };
+  programs.git.enable = true;
 
   max.scripts.all.enable = true;
 

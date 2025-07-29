@@ -2,7 +2,9 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
+    ../../hardware-configuration.nix
+    ./git
+    ./tmux
   ];
 
   boot.loader = {
@@ -20,7 +22,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking = {
-    hostName = "nixos";
+    hostName = "Endurance";
     networkmanager.enable = true;
   };
 

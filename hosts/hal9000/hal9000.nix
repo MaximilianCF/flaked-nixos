@@ -1,7 +1,9 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ./hardware-configuration.nix
+    ../../hardware-configuration.nix
+    ./git
+    ./tmux
   ];
 
   boot.loader = {
@@ -14,7 +16,7 @@
     systemd-boot.enable = false;
   };
 
-  networking.hostName = "home";
+  networking.hostName = "LedZeppelin";
   time.timeZone = "America/Sao_Paulo";
 
   nixpkgs.config = {
