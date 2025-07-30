@@ -14,6 +14,9 @@
     systemd-boot.enable = false;
   };
 
+  home.username = "maximiliancfdev";
+  home.homeDirectory = "/home/maximiliancfdev";
+
   networking.hostName = "LedZeppelin";
   time.timeZone = "America/Sao_Paulo";
 
@@ -38,8 +41,21 @@
     };
   };
 
+  services.flatpak.enable = true;
+  systemd.services.flatpak-repo = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    '';
+  };
+
   users.users.max = {
     isNormalUser = true;
+    packages = with pkgs; [
+      flatpak
+      gnome-software
+    ];
     extraGroups = [
       "wheel"
       "networkmanager"

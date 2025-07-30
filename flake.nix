@@ -24,7 +24,6 @@
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     nix-github-actions = {
       url = "github:nix-community/nix-github-actions";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -65,7 +64,6 @@
               }
             ];
           };
-
           hal9000 = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
@@ -103,7 +101,6 @@
               };
             };
           };
-
           pre-commit.settings = {
             hooks = {
               convco = {

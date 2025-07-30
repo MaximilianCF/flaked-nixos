@@ -11,4 +11,5 @@ with pkgs;
   claude-code
   nixos-shell
   vulnix
+  jetbrains.pycharm-community-bin
 ]
