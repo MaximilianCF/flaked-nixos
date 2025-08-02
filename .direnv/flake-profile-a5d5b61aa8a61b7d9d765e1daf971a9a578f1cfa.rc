@@ -37,7 +37,7 @@ NIX_BINTOOLS='/nix/store/lv91pnk6dqvw0xmbi5irli7m6nikfr33-binutils-wrapper-2.44'
 export NIX_BINTOOLS
 NIX_BINTOOLS_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu='1'
 export NIX_BINTOOLS_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu
-NIX_BUILD_CORES='20'
+NIX_BUILD_CORES='8'
 export NIX_BUILD_CORES
 NIX_CC='/nix/store/67x7pknz0qa2j16x02idf0x98lpcspah-gcc-wrapper-14.3.0'
 export NIX_CC
@@ -49,7 +49,7 @@ NIX_ENFORCE_NO_NATIVE='1'
 export NIX_ENFORCE_NO_NATIVE
 NIX_HARDENING_ENABLE='bindnow format fortify fortify3 pic relro stackclashprotection stackprotector strictoverflow zerocallusedregs'
 export NIX_HARDENING_ENABLE
-NIX_LDFLAGS='-rpath /home/max/meu-sistema/outputs/out/lib  -L/nix/store/9yh9ak97gn659bk4d3n411fx6c0ng7s2-python3-3.13.5/lib -L/nix/store/4kark163478mlnx42k2gakrji1z43z9m-ncurses-6.5/lib -L/nix/store/qfz8slc34jinyfkvmskaplijj8a79w25-libffi-3.5.1/lib -L/nix/store/qg2k9xl5af62zzlynwfim5f3ajwai88v-elfutils-0.193/lib -L/nix/store/f6yc9mbdp17kh3p70lhlix1w21jlj5kp-gmp-with-cxx-6.3.0/lib -L/nix/store/lyl9yxxz8a3mlaxvm0jln6mglpbf2fha-openssl-3.5.1/lib -L/nix/store/9yh9ak97gn659bk4d3n411fx6c0ng7s2-python3-3.13.5/lib -L/nix/store/4kark163478mlnx42k2gakrji1z43z9m-ncurses-6.5/lib -L/nix/store/qfz8slc34jinyfkvmskaplijj8a79w25-libffi-3.5.1/lib -L/nix/store/qg2k9xl5af62zzlynwfim5f3ajwai88v-elfutils-0.193/lib -L/nix/store/f6yc9mbdp17kh3p70lhlix1w21jlj5kp-gmp-with-cxx-6.3.0/lib -L/nix/store/lyl9yxxz8a3mlaxvm0jln6mglpbf2fha-openssl-3.5.1/lib'
+NIX_LDFLAGS='-rpath /home/maximiliancfdev/OfMax/outputs/out/lib  -L/nix/store/9yh9ak97gn659bk4d3n411fx6c0ng7s2-python3-3.13.5/lib -L/nix/store/4kark163478mlnx42k2gakrji1z43z9m-ncurses-6.5/lib -L/nix/store/qfz8slc34jinyfkvmskaplijj8a79w25-libffi-3.5.1/lib -L/nix/store/qg2k9xl5af62zzlynwfim5f3ajwai88v-elfutils-0.193/lib -L/nix/store/f6yc9mbdp17kh3p70lhlix1w21jlj5kp-gmp-with-cxx-6.3.0/lib -L/nix/store/lyl9yxxz8a3mlaxvm0jln6mglpbf2fha-openssl-3.5.1/lib -L/nix/store/9yh9ak97gn659bk4d3n411fx6c0ng7s2-python3-3.13.5/lib -L/nix/store/4kark163478mlnx42k2gakrji1z43z9m-ncurses-6.5/lib -L/nix/store/qfz8slc34jinyfkvmskaplijj8a79w25-libffi-3.5.1/lib -L/nix/store/qg2k9xl5af62zzlynwfim5f3ajwai88v-elfutils-0.193/lib -L/nix/store/f6yc9mbdp17kh3p70lhlix1w21jlj5kp-gmp-with-cxx-6.3.0/lib -L/nix/store/lyl9yxxz8a3mlaxvm0jln6mglpbf2fha-openssl-3.5.1/lib'
 export NIX_LDFLAGS
 NIX_NO_SELF_RPATH='1'
 NIX_PKG_CONFIG_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu='1'
@@ -154,7 +154,7 @@ declare -a envHostTargetHooks=('addCMakeParams' 'pkgConfigWrapper_addPkgConfigPa
 declare -a envTargetTargetHooks=()
 declare -a fixupOutputHooks=('if [ -z "${dontPatchELF-}" ]; then patchELF "$prefix"; fi' 'if [[ -z "${noAuditTmpdir-}" && -e "$prefix" ]]; then auditTmpdir "$prefix"; fi' 'if [ -z "${dontGzipMan-}" ]; then compressManPages "$prefix"; fi' '_moveLib64' '_moveSbin' '_moveSystemdUserUnits' 'patchShebangsAuto' '_pruneLibtoolFiles' '_doStrip' )
 flag='-L/nix/store/lyl9yxxz8a3mlaxvm0jln6mglpbf2fha-openssl-3.5.1/lib'
-guess='20'
+guess='8'
 iframework_seen=''
 initialPath='/nix/store/ih779chzzag1nm91fgnrndml4mghm3la-coreutils-9.7 /nix/store/3xi6s71d3znq0ivl2r7ypg5rsz71j16h-findutils-4.10.0 /nix/store/3y665d2l6l3bp6apj012awks60wsx42i-diffutils-3.12 /nix/store/ql68miwsgz9094bi3qa7nk17bfwf6h6a-gnused-4.9 /nix/store/k7gv42hpqwh6ghiyl4ava9p5r249x6vn-gnugrep-3.12 /nix/store/rlxhn6k70xwsyydv3vrawlhghffwkyvi-gawk-5.3.2 /nix/store/bpn20jn4235mij1372xvpmibgzzpqa3m-gnutar-1.35 /nix/store/g5fgsp4afxbm352jyyvk2yfygmnj7i57-gzip-1.14 /nix/store/caj219y7i877dhda2n81nqs6plhy8pqz-bzip2-1.0.8-bin /nix/store/dlidjkvgpd8g9fqxjnrvybwlv47j1qjc-gnumake-4.4.1 /nix/store/gkwbw9nzbkbz298njbn3577zmrnglbbi-bash-5.3p0 /nix/store/6ghk0jfhngcr22mr6vpp4ly5pn8k3fsv-patch-2.8 /nix/store/7hkhqmlsdv2nq3lb41qs1jym8k6xrwcn-xz-5.8.1-bin /nix/store/x80r0d1zplpl268282a2azg32yf6g1rc-file-5.45'
 installPhase='cargoInstallHook'
@@ -165,7 +165,7 @@ name='nix-shell-env'
 export name
 nativeBuildInputs='/nix/store/v0sf67x7sw6pg277amhgf3j84m60wrqn-pre-commit-4.2.0 /nix/store/8xmzjzm1nrqixy3l799wlpgqj9sdd8zb-treefmt /nix/store/vxnssi1xs36p4krfb070riclp7wnwvci-prettier-3.5.3 /nix/store/a3w3ka2d796ghlhf31il839c0658m5ih-cmake-3.31.7 /nix/store/7vrzhnby95407cbbahn3fj3y98qifgby-pkg-config-wrapper-0.29.2 /nix/store/ci7a9zdzvx2vp6hhmrgci94qpx17mn5a-auditable-cargo-1.88.0 /nix/store/11jvs1zf2j45ibc490gvnwliyrlpciid-cargo-build-hook.sh /nix/store/4689nsqd3w0nihikqm9dbxjnjzljrsas-cargo-check-hook.sh /nix/store/2c042jgq7vabff7jpkhxv8vz8li6kbag-cargo-install-hook.sh /nix/store/ifxyaj2lgqg0gzp1haamk29s15drjd3m-cargo-setup-hook.sh /nix/store/i19xh91f80g01v4ad3x363g4538z2qx9-rustc-wrapper-1.88.0 /nix/store/kg6psfcz4vjcvv8bpyvw422vrndrcq50-cargo-1.88.0 /nix/store/26v238sdw2c5vrkjmip1xp4bm1632f7a-ghc-9.8.4 /nix/store/73p6flqkcfnkcsxvciq3bjcz4l2f2g0a-remove-references-to'
 export nativeBuildInputs
-out='/home/max/meu-sistema/outputs/out'
+out='/home/maximiliancfdev/OfMax/outputs/out'
 export out
 outputBin='out'
 outputDev='out'
@@ -200,7 +200,7 @@ preDistPhases=' pytestCheckPhase pytestcachePhase pytestRemoveBytecodePhase'
 declare -a preFixupHooks=('_moveToShare' '_multioutDocs' '_multioutDevs' )
 preferLocalBuild='1'
 export preferLocalBuild
-prefix='/home/max/meu-sistema/outputs/out'
+prefix='/home/maximiliancfdev/OfMax/outputs/out'
 declare -a propagatedBuildDepFiles=('propagated-build-build-deps' 'propagated-native-build-inputs' 'propagated-build-target-deps' )
 propagatedBuildInputs=''
 export propagatedBuildInputs

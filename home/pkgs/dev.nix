@@ -12,4 +12,5 @@ with pkgs;
   nixos-shell
   vulnix
   jetbrains.pycharm-community-bin
+  zed-editor
 ]

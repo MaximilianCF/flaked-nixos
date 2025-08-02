@@ -11,5 +11,6 @@ with pkgs;
   gnomeExtensions.open-bar
   gnomeExtensions.window-on-top
   gnomeExtensions.vitals
+  gnomeExtensions.toggle-alacritty
 
 ]
