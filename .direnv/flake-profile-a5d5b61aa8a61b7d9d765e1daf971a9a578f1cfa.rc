@@ -49,7 +49,7 @@ NIX_ENFORCE_NO_NATIVE='1'
 export NIX_ENFORCE_NO_NATIVE
 NIX_HARDENING_ENABLE='bindnow format fortify fortify3 pic relro stackclashprotection stackprotector strictoverflow zerocallusedregs'
 export NIX_HARDENING_ENABLE
-NIX_LDFLAGS='-rpath /home/maximiliancfdev/OfMax/outputs/out/lib  -L/nix/store/9yh9ak97gn659bk4d3n411fx6c0ng7s2-python3-3.13.5/lib -L/nix/store/4kark163478mlnx42k2gakrji1z43z9m-ncurses-6.5/lib -L/nix/store/qfz8slc34jinyfkvmskaplijj8a79w25-libffi-3.5.1/lib -L/nix/store/qg2k9xl5af62zzlynwfim5f3ajwai88v-elfutils-0.193/lib -L/nix/store/f6yc9mbdp17kh3p70lhlix1w21jlj5kp-gmp-with-cxx-6.3.0/lib -L/nix/store/lyl9yxxz8a3mlaxvm0jln6mglpbf2fha-openssl-3.5.1/lib -L/nix/store/9yh9ak97gn659bk4d3n411fx6c0ng7s2-python3-3.13.5/lib -L/nix/store/4kark163478mlnx42k2gakrji1z43z9m-ncurses-6.5/lib -L/nix/store/qfz8slc34jinyfkvmskaplijj8a79w25-libffi-3.5.1/lib -L/nix/store/qg2k9xl5af62zzlynwfim5f3ajwai88v-elfutils-0.193/lib -L/nix/store/f6yc9mbdp17kh3p70lhlix1w21jlj5kp-gmp-with-cxx-6.3.0/lib -L/nix/store/lyl9yxxz8a3mlaxvm0jln6mglpbf2fha-openssl-3.5.1/lib'
+NIX_LDFLAGS='-rpath /home/max/OfMax/outputs/out/lib  -L/nix/store/9yh9ak97gn659bk4d3n411fx6c0ng7s2-python3-3.13.5/lib -L/nix/store/4kark163478mlnx42k2gakrji1z43z9m-ncurses-6.5/lib -L/nix/store/qfz8slc34jinyfkvmskaplijj8a79w25-libffi-3.5.1/lib -L/nix/store/qg2k9xl5af62zzlynwfim5f3ajwai88v-elfutils-0.193/lib -L/nix/store/f6yc9mbdp17kh3p70lhlix1w21jlj5kp-gmp-with-cxx-6.3.0/lib -L/nix/store/lyl9yxxz8a3mlaxvm0jln6mglpbf2fha-openssl-3.5.1/lib -L/nix/store/9yh9ak97gn659bk4d3n411fx6c0ng7s2-python3-3.13.5/lib -L/nix/store/4kark163478mlnx42k2gakrji1z43z9m-ncurses-6.5/lib -L/nix/store/qfz8slc34jinyfkvmskaplijj8a79w25-libffi-3.5.1/lib -L/nix/store/qg2k9xl5af62zzlynwfim5f3ajwai88v-elfutils-0.193/lib -L/nix/store/f6yc9mbdp17kh3p70lhlix1w21jlj5kp-gmp-with-cxx-6.3.0/lib -L/nix/store/lyl9yxxz8a3mlaxvm0jln6mglpbf2fha-openssl-3.5.1/lib'
 export NIX_LDFLAGS
 NIX_NO_SELF_RPATH='1'
 NIX_PKG_CONFIG_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu='1'
@@ -165,7 +165,7 @@ name='nix-shell-env'
 export name
 nativeBuildInputs='/nix/store/v0sf67x7sw6pg277amhgf3j84m60wrqn-pre-commit-4.2.0 /nix/store/8xmzjzm1nrqixy3l799wlpgqj9sdd8zb-treefmt /nix/store/vxnssi1xs36p4krfb070riclp7wnwvci-prettier-3.5.3 /nix/store/a3w3ka2d796ghlhf31il839c0658m5ih-cmake-3.31.7 /nix/store/7vrzhnby95407cbbahn3fj3y98qifgby-pkg-config-wrapper-0.29.2 /nix/store/ci7a9zdzvx2vp6hhmrgci94qpx17mn5a-auditable-cargo-1.88.0 /nix/store/11jvs1zf2j45ibc490gvnwliyrlpciid-cargo-build-hook.sh /nix/store/4689nsqd3w0nihikqm9dbxjnjzljrsas-cargo-check-hook.sh /nix/store/2c042jgq7vabff7jpkhxv8vz8li6kbag-cargo-install-hook.sh /nix/store/ifxyaj2lgqg0gzp1haamk29s15drjd3m-cargo-setup-hook.sh /nix/store/i19xh91f80g01v4ad3x363g4538z2qx9-rustc-wrapper-1.88.0 /nix/store/kg6psfcz4vjcvv8bpyvw422vrndrcq50-cargo-1.88.0 /nix/store/26v238sdw2c5vrkjmip1xp4bm1632f7a-ghc-9.8.4 /nix/store/73p6flqkcfnkcsxvciq3bjcz4l2f2g0a-remove-references-to'
 export nativeBuildInputs
-out='/home/maximiliancfdev/OfMax/outputs/out'
+out='/home/max/OfMax/outputs/out'
 export out
 outputBin='out'
 outputDev='out'
@@ -200,7 +200,7 @@ preDistPhases=' pytestCheckPhase pytestcachePhase pytestRemoveBytecodePhase'
 declare -a preFixupHooks=('_moveToShare' '_multioutDocs' '_multioutDevs' )
 preferLocalBuild='1'
 export preferLocalBuild
-prefix='/home/maximiliancfdev/OfMax/outputs/out'
+prefix='/home/max/OfMax/outputs/out'
 declare -a propagatedBuildDepFiles=('propagated-build-build-deps' 'propagated-native-build-inputs' 'propagated-build-target-deps' )
 propagatedBuildInputs=''
 export propagatedBuildInputs

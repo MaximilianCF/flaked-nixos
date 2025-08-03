@@ -12,5 +12,7 @@ with pkgs;
   gnomeExtensions.window-on-top
   gnomeExtensions.vitals
   gnomeExtensions.toggle-alacritty
-
+  gnomeExtensions.extension-list
+  gnomeExtensions.dash-to-dock
+  gnomeExtensions.arcmenu
 ]
