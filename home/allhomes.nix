@@ -17,7 +17,7 @@ in
     ./modules/scripts/hal-scripts-completo.nix
     ./modules/git/default.nix
     ./modules/tmux/default.nix
-    ./modules/neovim-dei/neovim-ide.nix
+    ./modules/neovim-ide/neovim-ide.nix
   ];
 
   programs.bash = {
