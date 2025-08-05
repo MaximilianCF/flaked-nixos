@@ -12,7 +12,7 @@
     enable = true;
     userName = "Max";
     userEmail = "maximiliancf.dev@icloud.com";
-    package = pkgs.gitFull;
+    package = pkgs.git;
   };
 
 }

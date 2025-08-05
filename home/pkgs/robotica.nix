@@ -2,5 +2,5 @@
 
 with pkgs;
 [
-  foxglove-cli
+  # foxglove-cli
 ]

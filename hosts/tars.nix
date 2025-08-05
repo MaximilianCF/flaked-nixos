@@ -79,16 +79,15 @@
     xserver = {
       enable = true;
       xkb.layout = "br";
-    };
-    displayManager = {
-      gdm.enable = true;
-      autoLogin = {
-        enable = true;
-        user = "max";
+      desktopManager.gnome.enable = true;
+      displayManager = {
+        gdm.enable = true;
+        autoLogin = {
+          enable = true;
+          user = "max";
+        };
       };
     };
-
-    desktopManager.gnome.enable = true;
 
     printing.enable = true;
 
@@ -121,6 +120,8 @@
     '';
   };
 
+  programs.zsh.enable = true;
+
   users.users.max = {
     packages = with pkgs; [
       flatpak
@@ -134,7 +135,7 @@
       "audio"
       "video"
     ];
-    shell = pkgs.bash;
+    shell = pkgs.zsh;
   };
 
   nix = {

@@ -2,7 +2,7 @@
   description = "DevShell para simulações e pacotes ROS2";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nix-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     nix-ros-overlay.url = "github:lopsided98/nix-ros-overlay";
   };

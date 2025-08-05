@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -18,9 +23,11 @@
     device = lib.mkForce "UUID=37d58026-bd15-4dca-b235-c11273de6745";
     fsType = "ext4";
   };
-  swapDevices = [{
-    device = lib.mkForce "/dev/disk/by-uuid/0c563728-b694-4c69-bfb6-188e31a7240a";
-  }];
+  swapDevices = [
+    {
+      device = lib.mkForce "/dev/disk/by-uuid/0c563728-b694-4c69-bfb6-188e31a7240a";
+    }
+  ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -140,7 +147,7 @@
       "audio"
       "video"
     ];
-    shell = pkgs.bash;
+    shell = pkgs.zsh;
   };
 
   nix = {

@@ -20,14 +20,14 @@ in
     ./modules/neovim-ide/neovim-ide.nix
   ];
 
-  programs.bash = {
+  programs.zsh = {
     enable = true;
   };
   programs.gh.enable = true;
 
   programs.direnv = {
     enable = true;
-    enableBashIntegration = true;
+    enableZshIntegration = true;
     nix-direnv.enable = true;
   };
 
