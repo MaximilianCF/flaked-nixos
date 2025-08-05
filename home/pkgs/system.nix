@@ -21,4 +21,6 @@ with pkgs;
   alacritty
   alacritty-theme
   ghostty
+  tree
+  bat
 ]

@@ -18,11 +18,9 @@ in
     ./modules/git/default.nix
     ./modules/tmux/default.nix
     ./modules/neovim-ide/neovim-ide.nix
+    ./modules/shell-zsh/zsh.nix
   ];
 
-  programs.zsh = {
-    enable = true;
-  };
   programs.gh.enable = true;
 
   programs.direnv = {
@@ -35,14 +33,19 @@ in
   programs.tmux.enable = true;
   programs.bat.enable = true;
   programs.eza.enable = true;
-  # programs.chromium.enable = true;
 
   programs.java = {
     enable = true;
     package = pkgs.jdk;
   };
 
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    lfs = {
+      enable = true;
+      package = git-lfs;
+    };
+  };
 
   max.scripts.all.enable = true;
 

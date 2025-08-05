@@ -43,7 +43,7 @@ NIX_CC='/nix/store/a0d7m3zn9p2dfa1h7ag9h2wzzr2w25sn-gcc-wrapper-14.2.1.20250322'
 export NIX_CC
 NIX_CC_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu='1'
 export NIX_CC_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu
-NIX_CFLAGS_COMPILE=' -frandom-seed=djmb9n3qx4 -isystem /nix/store/h097imm3w6dpx10qynrd2sz9fks2wbq8-python3-3.12.11/include -isystem /nix/store/0225zs9jl9s2y3ai1arbg0h9z7z4bmfi-openssl-3.4.1-dev/include -isystem /nix/store/h097imm3w6dpx10qynrd2sz9fks2wbq8-python3-3.12.11/include -isystem /nix/store/0225zs9jl9s2y3ai1arbg0h9z7z4bmfi-openssl-3.4.1-dev/include'
+NIX_CFLAGS_COMPILE=' -frandom-seed=0wcfiy92b6 -isystem /nix/store/h097imm3w6dpx10qynrd2sz9fks2wbq8-python3-3.12.11/include -isystem /nix/store/0225zs9jl9s2y3ai1arbg0h9z7z4bmfi-openssl-3.4.1-dev/include -isystem /nix/store/h097imm3w6dpx10qynrd2sz9fks2wbq8-python3-3.12.11/include -isystem /nix/store/0225zs9jl9s2y3ai1arbg0h9z7z4bmfi-openssl-3.4.1-dev/include'
 export NIX_CFLAGS_COMPILE
 NIX_ENFORCE_NO_NATIVE='1'
 export NIX_ENFORCE_NO_NATIVE
@@ -213,9 +213,10 @@ shell='/nix/store/ih68ar79msmj0496pgld4r3vqfr7bbin-bash-5.2p37/bin/bash'
 export shell
 shellHook='
 export PATH=/nix/store/hn3fplggal06gl19fi9za97d42zi06ip-pre-commit-4.0.1/bin:$PATH
-if ! /nix/store/znq04kv8kylg7xqwsdm36yz74z7219g7-git-minimal-2.49.0/bin/git rev-parse --git-dir &> /dev/null; then
-  echo 1>&2 "WARNING: git-hooks.nix: .git not found; skipping installation."
-else
+if true; then
+  if ! /nix/store/znq04kv8kylg7xqwsdm36yz74z7219g7-git-minimal-2.49.0/bin/git rev-parse --git-dir &> /dev/null; then
+    echo 1>&2 "WARNING: git-hooks.nix: .git not found; skipping installation."
+  else
   GIT_WC=`/nix/store/znq04kv8kylg7xqwsdm36yz74z7219g7-git-minimal-2.49.0/bin/git rev-parse --show-toplevel`
 
   # These update procedures compare before they write, to avoid
@@ -281,6 +282,7 @@ else
       /nix/store/znq04kv8kylg7xqwsdm36yz74z7219g7-git-minimal-2.49.0/bin/git config --local core.hooksPath "$common_dir/hooks"
     fi
   fi
+fi
 fi
 '
 export shellHook

@@ -120,8 +120,6 @@
     '';
   };
 
-  programs.zsh.enable = true;
-
   users.users.max = {
     packages = with pkgs; [
       flatpak
@@ -160,6 +158,13 @@
   systemd.services."autovt@tty1".enable = false;
 
   programs.firefox.enable = true;
+
+  programs.zsh = {
+    enable = true;
+    ohMyZsh = {
+      enable = true;
+    };
+  };
 
   system.stateVersion = "25.05";
 }
