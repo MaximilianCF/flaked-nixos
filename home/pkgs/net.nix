@@ -11,4 +11,5 @@ with pkgs;
   telegram-desktop
   bandwhich
   iftop
+  element-desktop
 ]

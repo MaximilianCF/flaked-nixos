@@ -9,16 +9,17 @@ let
   robotPkgs = import ./pkgs/robotica.nix { inherit pkgs; };
 in
 {
-
   home.packages = devPkgs ++ gnomePkgs ++ mediaPkgs ++ netPkgs ++ sysPkgs ++ robotPkgs;
 
   imports = [
-    # ./modules/scripts/nixos-options.nix
     ./modules/scripts/hal-scripts-completo.nix
-    ./modules/git/default.nix
+    ./modules/git.nix
     ./modules/tmux/default.nix
-    ./modules/neovim-ide/neovim-ide.nix
-    ./modules/shell-zsh/zsh.nix
+    ./modules/neovim-ide.nix
+    ./modules/zsh.nix
+    ./modules/java.nix
+    ./modules/eza.nix
+    ./modules/floorp.nix
   ];
 
   programs.gh.enable = true;
@@ -29,26 +30,14 @@ in
     nix-direnv.enable = true;
   };
 
-  programs.neovim.enable = true;
-  programs.tmux.enable = true;
-  programs.bat.enable = true;
-  programs.eza.enable = true;
-
-  programs.java = {
+  programs.home-manager = {
     enable = true;
-    package = pkgs.jdk;
   };
 
-  programs.git = {
+  services.home-manager.autoUpgrade = {
     enable = true;
-    lfs = {
-      enable = true;
-      package = git-lfs;
-    };
+    frequency = "daily";
   };
 
-  max.scripts.all.enable = true;
-
-  programs.home-manager.enable = true;
   home.stateVersion = "25.05";
 }

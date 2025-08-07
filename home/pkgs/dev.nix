@@ -13,4 +13,9 @@ with pkgs;
   vulnix
   jetbrains.pycharm-community-bin
   zed-editor
+  git-review
+  git-secret
+  gh
+  gitRepo
+  git-credential-manager
 ]
