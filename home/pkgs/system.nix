@@ -20,7 +20,6 @@ with pkgs;
   tmuxp
   alacritty
   alacritty-theme
-  ghostty
   tree
   bat
 ]

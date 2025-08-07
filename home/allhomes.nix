@@ -20,6 +20,7 @@ in
     ./modules/java.nix
     ./modules/eza.nix
     ./modules/floorp.nix
+    ./modules/ghostty.nix
   ];
 
   programs.gh.enable = true;
