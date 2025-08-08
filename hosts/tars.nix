@@ -159,6 +159,8 @@
 
   programs.firefox.enable = true;
 
+  home-manager.backupFileExtension = "backup";
+
   programs.zsh = {
     enable = true;
     ohMyZsh = {

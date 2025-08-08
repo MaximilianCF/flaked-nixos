@@ -171,6 +171,8 @@
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
+  home-manager.backupFileExtension = "backup";
+
   programs.firefox.enable = true;
 
   system.stateVersion = "25.05";
