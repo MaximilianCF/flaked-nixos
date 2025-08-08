@@ -5,7 +5,6 @@ with pkgs;
   vim
   putty
   gedit
-  terminator
   pcmanfm
   capture
   virtualbox
@@ -21,5 +20,4 @@ with pkgs;
   alacritty
   alacritty-theme
   tree
-  bat
 ]

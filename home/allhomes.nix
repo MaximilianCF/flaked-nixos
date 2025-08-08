@@ -21,15 +21,12 @@ in
     ./modules/eza.nix
     ./modules/floorp.nix
     ./modules/ghostty.nix
+    ./modules/bat.nix
+    ./modules/direnv.nix
+    ./modules/alacritty.nix
   ];
 
   programs.gh.enable = true;
-
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-    nix-direnv.enable = true;
-  };
 
   programs.home-manager = {
     enable = true;
