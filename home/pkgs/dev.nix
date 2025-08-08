@@ -11,7 +11,6 @@ with pkgs;
   claude-code
   nixos-shell
   vulnix
-  zed-editor
   git-review
   git-secret
   gh

@@ -24,6 +24,7 @@ in
     ./modules/bat.nix
     ./modules/direnv.nix
     ./modules/alacritty.nix
+    ./modules/zed.nix
   ];
 
   programs.gh.enable = true;
