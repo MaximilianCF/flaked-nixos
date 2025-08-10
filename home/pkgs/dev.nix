@@ -16,4 +16,5 @@ with pkgs;
   gh
   gitRepo
   git-credential-manager
+  nil
 ]

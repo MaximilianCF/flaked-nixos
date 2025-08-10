@@ -93,15 +93,17 @@
       enable = true;
       xkb.layout = "br";
     };
-    displayManager = {
-      gdm.enable = true;
-      autoLogin = {
-        enable = true;
-        user = "max";
+    xserver = {
+      displayManager = {
+        gdm.enable = true;
+        autoLogin = {
+          enable = true;
+          user = "max";
+        };
       };
     };
 
-    desktopManager.gnome.enable = true;
+    xserver.desktopManager.gnome.enable = true;
 
     printing.enable = true;
 
@@ -174,6 +176,7 @@
   home-manager.backupFileExtension = "backup";
 
   programs.firefox.enable = true;
+  programs.zsh.enable = true;
 
   system.stateVersion = "25.05";
 }
