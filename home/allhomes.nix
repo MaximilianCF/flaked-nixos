@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   devPkgs = import ./pkgs/dev.nix { inherit pkgs; };
