@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Enable Zsh
@@ -16,9 +16,10 @@
     oh-my-zsh = {
       enable = true;
       package = pkgs.oh-my-zsh;
-      theme = "robbyrussell";
+      theme = "agnoster";
       plugins = with pkgs; [
         "git"
+        "git-commit"
       ];
     };
   };

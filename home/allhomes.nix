@@ -25,6 +25,9 @@ in
     ./modules/direnv.nix
     ./modules/alacritty.nix
     ./modules/zed.nix
+    ./modules/mise.nix
+    ./modules/rofi.nix
+    ./modules/btop.nix
   ];
 
   programs.gh.enable = true;

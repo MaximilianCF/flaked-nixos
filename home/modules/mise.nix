@@ -2,11 +2,10 @@
 
 {
 
-  programs.eza = {
+  programs.mise = {
     enable = true;
     enableZshIntegration = true;
-    package = pkgs.eza;
-    git = true;
+    package = pkgs.mise;
   };
 
 }

@@ -13,11 +13,11 @@ with pkgs;
   zotero
   ulauncher
   xscreensaver
-  btop
   htop
   nix-bash-completions
   tmuxp
   alacritty
   alacritty-theme
   tree
+  hydrapaper
 ]
