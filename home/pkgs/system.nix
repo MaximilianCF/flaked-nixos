@@ -16,8 +16,6 @@ with pkgs;
   htop
   nix-bash-completions
   tmuxp
-  alacritty
-  alacritty-theme
   tree
   hydrapaper
   chatgpt

@@ -9,7 +9,6 @@ with pkgs;
 
   # Extensões
   gnomeExtensions.open-bar
-  gnomeExtensions.window-on-top
   gnomeExtensions.vitals
   gnomeExtensions.extension-list
   gnomeExtensions.dash-to-dock
