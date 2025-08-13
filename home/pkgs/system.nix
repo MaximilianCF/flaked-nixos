@@ -20,4 +20,5 @@ with pkgs;
   alacritty-theme
   tree
   hydrapaper
+  chatgpt
 ]

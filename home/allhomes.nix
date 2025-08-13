@@ -23,11 +23,11 @@ in
     ./modules/ghostty.nix
     ./modules/bat.nix
     ./modules/direnv.nix
-    ./modules/alacritty.nix
     ./modules/zed.nix
     ./modules/mise.nix
     ./modules/rofi.nix
     ./modules/btop.nix
+    ./modules/wezterm.nix
   ];
 
   programs.gh.enable = true;

@@ -11,8 +11,9 @@ with pkgs;
   gnomeExtensions.open-bar
   gnomeExtensions.window-on-top
   gnomeExtensions.vitals
-  gnomeExtensions.toggle-alacritty
   gnomeExtensions.extension-list
   gnomeExtensions.dash-to-dock
   gnomeExtensions.arcmenu
+  gnomeExtensions.weekly-commits
+  gnomeExtensions.screenshort-cut
 ]

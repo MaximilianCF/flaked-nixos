@@ -9,6 +9,9 @@
       pkgs.rofi-calc
 
     ];
+    extraConfig = {
+      modi = "drun,run,window";
+    };
   };
 
 }

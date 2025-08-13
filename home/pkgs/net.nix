@@ -6,8 +6,6 @@ with pkgs;
   microsoft-edge
   discord
   zapzap
-  done
-  fractal
   telegram-desktop
   bandwhich
   iftop
