@@ -4,6 +4,7 @@
 
   imports = [
     ./floorp.nix
+    ./chromium.nix
   ];
 
 }

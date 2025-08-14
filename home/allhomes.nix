@@ -26,6 +26,12 @@ in
     enable = true;
   };
 
+  services.psd.browsers = [
+    "chromium"
+    "floorp"
+    "google-chrome"
+  ];
+
   services.home-manager.autoUpgrade = {
     enable = true;
     frequency = "daily";
