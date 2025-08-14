@@ -13,21 +13,11 @@ in
 
   imports = [
     ./modules/scripts/hal-scripts-completo.nix
-    ./modules/git.nix
     ./modules/tmux/default.nix
-    ./modules/neovim-ide.nix
-    ./modules/zsh.nix
-    ./modules/java.nix
-    ./modules/eza.nix
-    ./modules/floorp.nix
-    ./modules/ghostty.nix
-    ./modules/bat.nix
-    ./modules/direnv.nix
-    ./modules/zed.nix
-    ./modules/mise.nix
-    ./modules/rofi.nix
-    ./modules/btop.nix
-    ./modules/wezterm.nix
+    ./modules/editores/default.nix
+    ./modules/system/default.nix
+    ./modules/shell_terminal/default.nix
+    ./modules/browsers/default.nix
   ];
 
   programs.gh.enable = true;
