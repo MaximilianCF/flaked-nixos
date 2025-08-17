@@ -17,4 +17,5 @@ with pkgs;
   gitRepo
   git-credential-manager
   nil
+  gitkraken
 ]
