@@ -24,6 +24,8 @@
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
+    myflake.url = "github:MaximilianCF/flaked-nixos";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     git-hooks-nix = {
@@ -43,6 +45,7 @@
       flake-parts,
       home-manager,
       nix-github-actions,
+      myflake,
       ...
     }: # ros2-flake, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
