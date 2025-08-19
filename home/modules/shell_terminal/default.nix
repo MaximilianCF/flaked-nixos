@@ -6,6 +6,7 @@
     ./ghostty.nix
     ./wezterm.nix
     ./zsh.nix
+    ./kitty.nix
   ];
 
 }
