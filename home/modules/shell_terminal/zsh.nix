@@ -4,6 +4,7 @@
   # Enable Zsh
   programs.zsh = {
     enable = true;
+    autocd = true;
     enableCompletion = true;
     autosuggestion = {
       enable = true;
@@ -12,6 +13,9 @@
     syntaxHighlighting = {
       enable = true;
       highlighters = [ "main" ];
+    };
+    zplug = {
+      enable = true;
     };
     oh-my-zsh = {
       enable = true;
