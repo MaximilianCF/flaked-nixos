@@ -7,7 +7,6 @@ with pkgs;
   gedit
   pcmanfm
   capture
-  virtualbox
   home-manager
   typora
   zotero
