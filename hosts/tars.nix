@@ -122,8 +122,6 @@
     '';
   };
 
-  users.extraGroups.vboxusers.members = [ "max" ];
-
   users.users.max = {
     packages = with pkgs; [
       flatpak
@@ -136,7 +134,6 @@
       "wheel"
       "audio"
       "video"
-      "vboxusers"
     ];
     shell = pkgs.zsh;
   };
@@ -150,7 +147,6 @@
       trusted-users = [
         "root"
         "@wheel"
-        "vboxusers"
       ];
     };
     gc = {
