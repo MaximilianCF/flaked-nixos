@@ -5,6 +5,9 @@
     ./hardware-configuration.nix
   ];
 
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+
   boot.loader = {
     grub = {
       enable = true;
@@ -121,6 +124,8 @@
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     '';
   };
+
+  users.extraGroups.vboxusers.members = [ "max" ];
 
   users.users.max = {
     packages = with pkgs; [
