@@ -5,13 +5,6 @@
     ./hardware-configuration.nix
   ];
 
-  virtualisation.virtualbox.host = {
-    enable = true;
-    enableExtensionPack = true;
-    package = pkgs.virtualbox;
-    enableKvm = true;
-  };
-
   boot.loader = {
     grub = {
       enable = true;
