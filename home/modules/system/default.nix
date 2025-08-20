@@ -11,6 +11,7 @@
     ./java.nix
     ./rofi.nix
     ./mise.nix
+    ./nh.nix
   ];
 
 }

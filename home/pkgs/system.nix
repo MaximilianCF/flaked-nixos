@@ -18,4 +18,6 @@ with pkgs;
   tree
   hydrapaper
   chatgpt
+  devenv
+  dix
 ]

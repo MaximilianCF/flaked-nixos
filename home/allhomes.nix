@@ -7,10 +7,9 @@ let
   netPkgs = import ./pkgs/net.nix { inherit pkgs; };
   sysPkgs = import ./pkgs/system.nix { inherit pkgs; };
   robotPkgs = import ./pkgs/robotica.nix { inherit pkgs; };
-  miscPkgs = import ./pkgs/misc.nix { inherit pkgs; };
 in
 {
-  home.packages = devPkgs ++ gnomePkgs ++ mediaPkgs ++ netPkgs ++ sysPkgs ++ robotPkgs ++ miscPkgs;
+  home.packages = devPkgs ++ gnomePkgs ++ mediaPkgs ++ netPkgs ++ sysPkgs ++ robotPkgs;
 
   imports = [
     ./modules/scripts/hal-scripts-completo.nix

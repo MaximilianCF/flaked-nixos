@@ -10,6 +10,10 @@
       enable = true;
       strategy = [ "history" ];
     };
+    antidote = {
+      enable = true;
+      package = pkgs.antidote;
+    };
     syntaxHighlighting = {
       enable = true;
       highlighters = [ "main" ];
