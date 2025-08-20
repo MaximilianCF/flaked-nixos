@@ -7,10 +7,10 @@
     enableCompletion = true;
 
     # Módulos nativos do HM (mais estáveis que via plugin duplicado)
-    autosuggestion = {
-      enable = true;
-      strategy = [ "history" ];
-    };
+    # autosuggestion = {
+    # enable = true;
+    # strategy = [ "history" ];
+    # };
 
     syntaxHighlighting = {
       enable = true;

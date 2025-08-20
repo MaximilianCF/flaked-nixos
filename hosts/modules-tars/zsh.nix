@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    zsh-autosuggestions
+    zsh-autosuggestion
     zsh-syntax-highlighting
     zsh-powerlevel10k
   ];
@@ -13,8 +13,8 @@
 
     plugins = [
       {
-        name = "zsh-autosuggestions";
-        src = pkgs.zsh-autosuggestions;
+        name = "zsh-autosuggestion";
+        src = pkgs.zsh-autosuggestion;
       }
       {
         name = "zsh-syntax-highlighting";

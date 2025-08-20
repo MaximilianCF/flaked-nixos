@@ -10,4 +10,5 @@ with pkgs;
   bandwhich
   iftop
   element-desktop
+  brave
 ]
