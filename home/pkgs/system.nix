@@ -19,5 +19,5 @@ with pkgs;
   hydrapaper
   chatgpt
   devenv
-  dix
+  deadnix
 ]

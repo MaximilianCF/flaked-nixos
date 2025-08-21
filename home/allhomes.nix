@@ -17,7 +17,8 @@ in
     ./modules/editores/default.nix
     ./modules/system/default.nix
     ./modules/shell_terminal/default.nix
-    ./modules/browsers/default.nix
+    #./modules/browsers/default.nix
+    ./modules/misc/default.nix
   ];
 
   programs.gh.enable = true;
@@ -27,8 +28,6 @@ in
   };
 
   services.psd.browsers = [
-    "chromium"
-    "floorp"
     "google-chrome"
   ];
 
