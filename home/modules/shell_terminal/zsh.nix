@@ -4,11 +4,6 @@
   # Enable Zsh
   programs.zsh = {
     enable = true;
-    cdpath = [
-      OfMax
-      Projetos
-      GithubRepos
-    ];
     enableCompletion = true;
     autosuggestion = {
       enable = true;
