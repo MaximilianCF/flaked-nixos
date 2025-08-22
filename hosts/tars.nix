@@ -170,5 +170,10 @@
     };
   };
 
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
   system.stateVersion = "25.05";
 }

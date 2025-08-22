@@ -1,5 +1,5 @@
 {
-  description = "Sistema declarativo NixOS com Home Manager integrado";
+  description = "Sistema declarativo NixOS com Home Manager integrado (flake-parts)";
 
   nixConfig = {
     extra-substituters = [
@@ -20,18 +20,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #ros2-flake.url = "./ros2-flake";
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
-
-    #myflake.url = "github:MaximilianCF/flaked-nixos";
-
-    flake-parts.url = "github:hercules-ci/flake-parts";
 
     git-hooks-nix = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nix-github-actions = {
       url = "github:nix-community/nix-github-actions";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,12 +39,13 @@
     inputs@{
       self,
       nixpkgs,
-      flake-parts,
       home-manager,
+      flake-parts,
       nix-github-actions,
       ...
-    }: # ros2-flake, ... }:
+    }:
     flake-parts.lib.mkFlake { inherit inputs; } {
+
       imports = [
         inputs.git-hooks-nix.flakeModule
         inputs.treefmt-nix.flakeModule
@@ -55,37 +53,50 @@
 
       systems = nixpkgs.lib.systems.flakeExposed;
 
-      flake = {
-        githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
-          inherit (self) checks;
-        };
-        nixosConfigurations = {
-          tars = nixpkgs.lib.nixosSystem {
+      flake.homeConfigurations = {
+        max = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
             system = "x86_64-linux";
-            modules = [
-              ./hosts/tars.nix
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.users.max = import ./home/allhomes.nix;
-              }
-            ];
+            config.allowUnfree = true;
           };
-          hal9000 = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            modules = [
-              ./hosts/hal9000.nix
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.users.max = import ./home/allhomes.nix;
-              }
-            ];
-          };
+          modules = [
+            ./home/default.nix
+          ];
         };
       };
+
+      flake.nixosConfigurations = {
+        tars = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/tars.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.max = import ./home/default.nix;
+            }
+          ];
+        };
+
+        hal9000 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/hal9000.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.max = import ./home/default.nix;
+            }
+          ];
+        };
+      };
+
+      flake.githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
+        inherit (self) checks;
+      };
+
       perSystem =
         {
           system,
@@ -109,6 +120,9 @@
               };
             };
           };
+
+          formatter = config.treefmt.build.wrapper;
+
           pre-commit.settings = {
             hooks = {
               convco = {
@@ -121,12 +135,20 @@
               };
             };
           };
+
           devShells.default = pkgs.mkShell {
             inputsFrom = [
-              config.pre-commit.devShell
               config.treefmt.build.devShell
+              config.pre-commit.devShell
             ]
             ++ config.pre-commit.settings.enabledPackages;
+          };
+
+          checks.hm-activation = pkgs.stdenv.mkDerivation {
+            name = "check-home-activation";
+            dontUnpack = true;
+            dontBuild = true;
+            installPhase = ''mkdir -p $out'';
           };
         };
     };

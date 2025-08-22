@@ -10,4 +10,5 @@ with pkgs;
   iftop
   element-desktop
   brave
+  signal-desktop
 ]
