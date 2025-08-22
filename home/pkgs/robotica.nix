@@ -2,5 +2,8 @@
 
 with pkgs;
 [
-  # foxglove-cli
+  #foxglove-cli
+  g2o
+  octave
+
 ]

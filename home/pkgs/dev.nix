@@ -19,4 +19,5 @@ with pkgs;
   nil
   gitkraken
   ruby
+  gnumake
 ]
