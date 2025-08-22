@@ -18,5 +18,5 @@ with pkgs;
   git-credential-manager
   nil
   gitkraken
-  turtle
+  ruby
 ]

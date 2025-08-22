@@ -60,7 +60,7 @@
             config.allowUnfree = true;
           };
           modules = [
-            ./home/default.nix
+            ./home/allhomes.nix
           ];
         };
       };
@@ -74,7 +74,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.max = import ./home/default.nix;
+              home-manager.users.max = import ./home/allhomes.nix;
             }
           ];
         };
@@ -87,7 +87,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.max = import ./home/default.nix;
+              home-manager.users.max = import ./home/allhomes.nix;
             }
           ];
         };

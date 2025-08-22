@@ -4,5 +4,6 @@ with pkgs;
 [
 
   tradingview
+  sageWithDoc
 
 ]
