@@ -33,6 +33,22 @@
       url = "github:nix-community/nix-github-actions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Sub-flakes locais
+    blog = {
+      url = "path:./shell/blog";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    infra = {
+      url = "path:./shell/infra";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ros2 = {
+      url = "path:./shell/ros2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -102,6 +118,7 @@
           system,
           pkgs,
           config,
+          lib,
           ...
         }:
         {
@@ -136,13 +153,24 @@
             };
           };
 
-          devShells.default = pkgs.mkShell {
-            inputsFrom = [
-              config.treefmt.build.devShell
-              config.pre-commit.devShell
-            ]
-            ++ config.pre-commit.settings.enabledPackages;
-          };
+          devShells =
+            let
+              hasDefault = flake: lib.hasAttrByPath [ "devShells" system "default" ] flake;
+
+              baseDefault = pkgs.mkShell {
+                inputsFrom = [
+                  config.treefmt.build.devShell
+                  config.pre-commit.devShell
+                ]
+                ++ config.pre-commit.settings.enabledPackages;
+              };
+            in
+            lib.mkMerge [
+              { default = baseDefault; }
+              (lib.optionalAttrs (hasDefault inputs.blog) { blog = inputs.blog.devShells.${system}.default; })
+              (lib.optionalAttrs (hasDefault inputs.infra) { infra = inputs.infra.devShells.${system}.default; })
+              (lib.optionalAttrs (hasDefault inputs.ros2) { ros2 = inputs.ros2.devShells.${system}.default; })
+            ];
 
           checks.hm-activation = pkgs.stdenv.mkDerivation {
             name = "check-home-activation";

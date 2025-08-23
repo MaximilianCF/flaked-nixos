@@ -8,11 +8,11 @@ with pkgs;
   octavePackages.statistics
   octavePackages.control
   octavePackages.signal
-  octavePackages.optim
+  #octavePackages.optim
   octavePackages.linear-algebra
   octavePackages.financial
   octavePackages.io
   octavePackages.image
-  octavePackages.data-smoothing
+  #octavePackages.data-smoothing
 
 ]

@@ -4,7 +4,6 @@
   lib,
   ...
 }:
-
 {
   imports = [
     ./hardware-configuration-hal9000.nix
@@ -150,6 +149,15 @@
   # Opcional: deixar Qt alinhado ao GNOME fora dos flatpaks
   environment.systemPackages = [
     pkgs.qgnomeplatform-qt6
+    (pkgs.rWrapper.override {
+      packages = with pkgs.rPackages; [
+        ggplot2
+        tidyverse
+        dplyr
+        devtools
+      ];
+    })
+    pkgs.rstudioWrapper
   ];
 
   users.users.max = {
@@ -187,6 +195,7 @@
   };
 
   nixpkgs.config.allowUnsupportedSystem = true;
+  nixpkgs.config.allowBroken = true;
 
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
