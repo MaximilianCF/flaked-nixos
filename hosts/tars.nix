@@ -122,6 +122,31 @@
     '';
   };
 
+  xdg.portal = {
+    enable = true;
+    # Para GNOME:
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    # Se estiver no KDE, troque para: [ pkgs.xdg-desktop-portal-kde ]
+    # Se estiver em Sway/Wayland puro, use: [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ]
+  };
+
+  # Opcional: deixar Qt alinhado ao GNOME fora dos flatpaks
+  environment.systemPackages = [
+    pkgs.qgnomeplatform-qt6
+    (pkgs.rWrapper.override {
+      packages = with pkgs.rPackages; [
+        ggplot2
+        tidyverse
+        dplyr
+        devtools
+      ];
+    })
+    pkgs.rstudioWrapper
+  ];
+
   users.users.max = {
     packages = with pkgs; [
       flatpak

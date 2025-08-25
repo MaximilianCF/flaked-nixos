@@ -11,4 +11,5 @@ with pkgs;
   element-desktop
   brave
   signal-desktop
+  slack
 ]
