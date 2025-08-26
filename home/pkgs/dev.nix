@@ -20,4 +20,5 @@ with pkgs;
   gitkraken
   ruby
   gnumake
+  julia
 ]

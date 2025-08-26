@@ -14,5 +14,7 @@ with pkgs;
   octavePackages.io
   octavePackages.image
   #octavePackages.data-smoothing
+  gretl
+  rPackages.gretlR
 
 ]

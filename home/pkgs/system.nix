@@ -20,4 +20,6 @@ with pkgs;
   chatgpt
   devenv
   deadnix
+  gnuplot
+  gv
 ]

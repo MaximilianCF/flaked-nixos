@@ -13,6 +13,5 @@ with pkgs;
   gnomeExtensions.extension-list
   gnomeExtensions.dash-to-dock
   gnomeExtensions.arcmenu
-  gnomeExtensions.weekly-commits
   gnomeExtensions.screenshort-cut
 ]

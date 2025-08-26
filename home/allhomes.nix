@@ -6,10 +6,10 @@ let
   mediaPkgs = import ./pkgs/media.nix { inherit pkgs; };
   netPkgs = import ./pkgs/net.nix { inherit pkgs; };
   sysPkgs = import ./pkgs/system.nix { inherit pkgs; };
-  robotPkgs = import ./pkgs/robotica.nix { inherit pkgs; };
+  mathPkgs = import ./pkgs/math.nix { inherit pkgs; };
 in
 {
-  home.packages = devPkgs ++ gnomePkgs ++ mediaPkgs ++ netPkgs ++ sysPkgs ++ robotPkgs;
+  home.packages = devPkgs ++ gnomePkgs ++ mediaPkgs ++ netPkgs ++ sysPkgs ++ mathPkgs;
 
   imports = [
     ./modules/scripts/hal-scripts-completo.nix
