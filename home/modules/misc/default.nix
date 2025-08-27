@@ -3,7 +3,7 @@
 {
 
   imports = [
-    ./sagemath.nix
+    #./sagemath.nix
   ];
 
 }
