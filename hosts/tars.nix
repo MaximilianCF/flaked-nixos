@@ -142,6 +142,8 @@
       ];
     })
     pkgs.rstudioWrapper
+    pkgs.firefox-beta
+    pkgs.megasync
   ];
 
   users.users.max = {
@@ -180,8 +182,6 @@
 
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
-
-  programs.firefox.enable = true;
 
   home-manager.backupFileExtension = "backup";
 

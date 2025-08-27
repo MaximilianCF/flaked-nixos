@@ -9,8 +9,8 @@
     ./eza.nix
     ./git.nix
     ./java.nix
-    ./rofi.nix
-    ./mise.nix
+    #./rofi.nix
+    #./mise.nix
     ./nh.nix
   ];
 

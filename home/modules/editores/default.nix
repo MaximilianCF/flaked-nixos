@@ -5,7 +5,7 @@
   imports = [
     ./emacs.nix
     ./neovim-ide.nix
-    ./zed.nix
+    #./zed.nix
   ];
 
 }
