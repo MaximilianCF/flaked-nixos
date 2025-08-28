@@ -12,4 +12,5 @@ with pkgs;
   brave
   signal-desktop
   slack
+  microsoft-edge
 ]
