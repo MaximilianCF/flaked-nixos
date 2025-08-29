@@ -197,5 +197,16 @@
     binfmt = true;
   };
 
+  services = {
+    postgresql = {
+      enable = true;
+      package = pkgs.postgresql_15;
+    };
+    pgadmin = {
+      enable = true;
+      package = pgadmin14;
+    };
+  };
+
   system.stateVersion = "25.05";
 }
