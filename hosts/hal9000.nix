@@ -7,6 +7,7 @@
 {
   imports = [
     ./hardware-configuration-hal9000.nix
+    ../modules/postgres.nix
   ];
 
   boot.loader = {
@@ -189,6 +190,16 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+  };
+
+  my.postgres = {
+    enable = true;
+    version = "15"; # ou "16"
+    database = "mydatabase";
+    user = "max";
+    authMethod = "trust"; # em prod: "md5" ou "scram-sha-256"
+    listenLocalhost = true; # pgAdmin local
+    openFirewall = false; # deixa fechado por padrão
   };
 
   nixpkgs.config.allowUnsupportedSystem = true;

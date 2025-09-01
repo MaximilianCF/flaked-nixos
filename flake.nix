@@ -103,7 +103,11 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.max = import ./home/allhomes.nix;
+              home-manager.users.max = {
+                imports = [
+                  ./home/allhomes.nix
+                ];
+              };
             }
           ];
         };
