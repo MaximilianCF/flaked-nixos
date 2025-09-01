@@ -21,4 +21,7 @@ with pkgs;
   ruby
   gnumake
   julia
+  rustc
+  cargo
+  rust-analyzer
 ]
