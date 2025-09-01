@@ -16,5 +16,6 @@ with pkgs;
   #octavePackages.data-smoothing
   gretl
   rPackages.gretlR
+  geogebra6
 
 ]

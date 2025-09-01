@@ -12,6 +12,7 @@
     #./rofi.nix
     #./mise.nix
     ./nh.nix
+    ./virtualization.nix
   ];
 
 }

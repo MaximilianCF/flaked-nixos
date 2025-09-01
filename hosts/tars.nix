@@ -157,6 +157,7 @@
       "networkmanager"
       "wheel"
       "audio"
+      "docker"
       "video"
     ];
     shell = pkgs.zsh;
@@ -205,6 +206,10 @@
     authMethod = "trust";
     listenLocalhost = true;
     openFirewall = false;
+  };
+
+  virtualisation.docker = {
+    enable = true;
   };
 
   system.stateVersion = "25.05";
