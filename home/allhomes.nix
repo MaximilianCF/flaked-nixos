@@ -31,6 +31,9 @@ in
     "google-chrome"
   ];
 
+  home.username = "max";
+  home.homeDirectory = "/home/max";
+
   services.home-manager.autoUpgrade = {
     enable = true;
     frequency = "daily";

@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../modules/postgres.nix
   ];
 
   boot.loader = {
@@ -142,7 +143,6 @@
       ];
     })
     pkgs.rstudioWrapper
-    pkgs.firefox-beta
     pkgs.megasync
   ];
 
@@ -197,15 +197,14 @@
     binfmt = true;
   };
 
-  services = {
-    postgresql = {
-      enable = true;
-      package = pkgs.postgresql_15;
-    };
-    pgadmin = {
-      enable = true;
-      package = pgadmin14;
-    };
+  my.postgres = {
+    enable = true;
+    version = "15"; # ou "16"
+    database = "mydatabase";
+    user = "max";
+    authMethod = "trust"; # em prod: "md5" ou "scram-sha-256"
+    listenLocalhost = true; # pgAdmin local
+    openFirewall = false; # deixa fechado por padrão
   };
 
   system.stateVersion = "25.05";

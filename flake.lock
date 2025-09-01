@@ -316,6 +316,7 @@
         "nix-github-actions": "nix-github-actions",
         "nixpkgs": "nixpkgs",
         "ros2": "ros2",
+        "rust": "rust",
         "treefmt-nix": "treefmt-nix"
       }
     },
@@ -333,6 +334,22 @@
       },
       "original": {
         "path": "./shell/ros2",
+        "type": "path"
+      },
+      "parent": []
+    },
+    "rust": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "path": "./shell/rust",
+        "type": "path"
+      },
+      "original": {
+        "path": "./shell/rust",
         "type": "path"
       },
       "parent": []

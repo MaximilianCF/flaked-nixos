@@ -49,6 +49,11 @@
       url = "path:./shell/ros2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rust = {
+      url = "path:./shell/rust";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -174,6 +179,7 @@
               (lib.optionalAttrs (hasDefault inputs.blog) { blog = inputs.blog.devShells.${system}.default; })
               (lib.optionalAttrs (hasDefault inputs.infra) { infra = inputs.infra.devShells.${system}.default; })
               (lib.optionalAttrs (hasDefault inputs.ros2) { ros2 = inputs.ros2.devShells.${system}.default; })
+              (lib.optionalAttrs (hasDefault inputs.rust) { rust = inputs.rust.devShells.${system}.default; })
             ];
 
           checks.hm-activation = pkgs.stdenv.mkDerivation {

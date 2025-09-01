@@ -6,7 +6,6 @@ with pkgs;
   putty
   gedit
   capture
-  home-manager
   typora
   zotero
   xscreensaver
