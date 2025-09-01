@@ -3,12 +3,13 @@
 
   nixConfig = {
     extra-substituters = [
-      "https://ros.cachix.org"
       "https://cachix.cachix.org"
+      "https://nix-community.cachix.org"
     ];
     extra-trusted-public-keys = [
-      "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="
       "cachix.cachix.org-1:eWNHQldwUO7G2VkjpnjDbWwy4KQ/HNxht7H4SSoMckM="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/q5CX+/rkCWyvRCYg3Fs="
+
     ];
   };
 
@@ -34,26 +35,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Sub-flakes locais
-    blog = {
-      url = "path:./shell/blog";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    infra = {
-      url = "path:./shell/infra";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    ros2 = {
-      url = "path:./shell/ros2";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    rust = {
-      url = "path:./shell/rust";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -63,6 +44,7 @@
       home-manager,
       flake-parts,
       nix-github-actions,
+      git-hooks-nix,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -161,26 +143,13 @@
               };
             };
           };
-
-          devShells =
-            let
-              hasDefault = flake: lib.hasAttrByPath [ "devShells" system "default" ] flake;
-
-              baseDefault = pkgs.mkShell {
-                inputsFrom = [
-                  config.treefmt.build.devShell
-                  config.pre-commit.devShell
-                ]
-                ++ config.pre-commit.settings.enabledPackages;
-              };
-            in
-            lib.mkMerge [
-              { default = baseDefault; }
-              (lib.optionalAttrs (hasDefault inputs.blog) { blog = inputs.blog.devShells.${system}.default; })
-              (lib.optionalAttrs (hasDefault inputs.infra) { infra = inputs.infra.devShells.${system}.default; })
-              (lib.optionalAttrs (hasDefault inputs.ros2) { ros2 = inputs.ros2.devShells.${system}.default; })
-              (lib.optionalAttrs (hasDefault inputs.rust) { rust = inputs.rust.devShells.${system}.default; })
-            ];
+          devShells.default = pkgs.mkShell {
+            inputsFrom = [
+              config.treefmt.build.devShell
+              config.pre-commit.devShell
+            ]
+            ++ config.pre-commit.settings.enabledPackages;
+          };
 
           checks.hm-activation = pkgs.stdenv.mkDerivation {
             name = "check-home-activation";

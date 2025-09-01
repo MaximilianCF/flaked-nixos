@@ -199,12 +199,12 @@
 
   my.postgres = {
     enable = true;
-    version = "15"; # ou "16"
+    version = "15";
     database = "mydatabase";
     user = "max";
-    authMethod = "trust"; # em prod: "md5" ou "scram-sha-256"
-    listenLocalhost = true; # pgAdmin local
-    openFirewall = false; # deixa fechado por padrão
+    authMethod = "trust";
+    listenLocalhost = true;
+    openFirewall = false;
   };
 
   system.stateVersion = "25.05";
