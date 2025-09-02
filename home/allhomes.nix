@@ -7,9 +7,10 @@ let
   netPkgs = import ./pkgs/net.nix { inherit pkgs; };
   sysPkgs = import ./pkgs/system.nix { inherit pkgs; };
   mathPkgs = import ./pkgs/math.nix { inherit pkgs; };
+  miscPkgs = import ./pkgs/misc.nix { inherit pkgs; };
 in
 {
-  home.packages = devPkgs ++ gnomePkgs ++ mediaPkgs ++ netPkgs ++ sysPkgs ++ mathPkgs;
+  home.packages = devPkgs ++ gnomePkgs ++ mediaPkgs ++ netPkgs ++ sysPkgs ++ mathPkgs ++ miscPkgs;
 
   imports = [
     ./modules/scripts/hal-scripts-completo.nix
