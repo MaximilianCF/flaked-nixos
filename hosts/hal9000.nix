@@ -213,5 +213,14 @@
   programs.firefox.enable = true;
   programs.zsh.enable = true;
 
+  virtualisation.docker = {
+    enable = true;
+  };
+
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
   system.stateVersion = "25.05";
 }

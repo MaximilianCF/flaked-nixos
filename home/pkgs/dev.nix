@@ -21,4 +21,5 @@ with pkgs;
   ruby
   gnumake
   julia
+  shellhub-agent
 ]
