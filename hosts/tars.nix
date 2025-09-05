@@ -224,13 +224,13 @@
     PubkeyAcceptedKeyTypes ssh-ed25519
     ServerAliveInterval 60
     IPQoS throughput
-    IdentityFile /path/to/your/private/key
+    IdentityFile /home/max/.ssh/my-nixbuild-key
   '';
 
   programs.ssh.knownHosts = {
     nixbuild = {
       hostNames = [ "eu.nixbuild.net" ];
-      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAekjki0mgMAzN8/qMixizRHBwDVc+nY7OjibU9vcz8F my-key-comment";
     };
   };
 

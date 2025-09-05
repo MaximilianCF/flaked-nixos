@@ -14,4 +14,5 @@ with pkgs;
   gnomeExtensions.dash-to-dock
   gnomeExtensions.arcmenu
   gnomeExtensions.screenshort-cut
+  gnomeExtensions.bubblemail
 ]
