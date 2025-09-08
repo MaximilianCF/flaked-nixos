@@ -90,6 +90,7 @@
 
         hal9000 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/hal9000.nix
             home-manager.nixosModules.home-manager
