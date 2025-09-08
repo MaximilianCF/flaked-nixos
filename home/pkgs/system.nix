@@ -17,5 +17,4 @@ with pkgs;
   deadnix
   gnuplot
   gv
-  bubblemail
 ]

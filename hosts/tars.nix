@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 
@@ -137,7 +138,7 @@
     ];
   };
 
-  environment.systemPackages = [
+  environment.systemPackages = with inputs.browser-previews.packages.${pkgs.system}; [
     pkgs.qgnomeplatform-qt6
     (pkgs.rWrapper.override {
       packages = with pkgs.rPackages; [
@@ -147,6 +148,7 @@
         devtools
       ];
     })
+    google-chrome-dev
     pkgs.rstudioWrapper
     pkgs.megasync
   ];
