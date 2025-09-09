@@ -22,4 +22,5 @@ with pkgs;
   julia
   shellhub-agent
   gitkraken
+  jetbrains.pycharm-community-src
 ]

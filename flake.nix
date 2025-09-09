@@ -23,7 +23,7 @@
 
     browser-previews = {
       url = "github:nix-community/browser-previews";
-      inputs.nixpkgs.follows = "nixpkgs"; # Ensures browser-previews uses the same nixpkgs as your main flake
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     flake-parts.url = "github:hercules-ci/flake-parts";

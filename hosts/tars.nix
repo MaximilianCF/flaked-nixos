@@ -146,6 +146,7 @@
         tidyverse
         dplyr
         devtools
+        Rcpp
       ];
     })
     google-chrome-dev
