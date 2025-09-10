@@ -136,8 +136,6 @@
             };
           };
 
-          formatter = config.treefmt.build.wrapper;
-
           pre-commit.settings = {
             hooks = {
               convco = {
