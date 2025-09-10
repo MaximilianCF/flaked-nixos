@@ -152,6 +152,7 @@
     google-chrome-dev
     pkgs.rstudioWrapper
     pkgs.megasync
+    pkgs.cachix
   ];
 
   users.users.max = {
