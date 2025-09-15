@@ -19,7 +19,11 @@
       device = "nodev";
       efiSupport = true;
     };
-    systemd-boot.enable = false;
+    systemd-boot = {
+      enable = false;
+      configurationLimit = lib.mkDefault 2;
+      consoleMode = lib.mkDefault "max";
+    };
     efi.canTouchEfiVariables = true;
   };
 
@@ -83,17 +87,18 @@
   console.keyMap = "br-abnt2";
 
   services = {
+    desktopManager.gnome.enable = true;
+    displayManager = {
+      gdm.enable = true;
+      autoLogin = {
+        enable = true;
+        user = "max";
+      };
+    };
     xserver = {
       enable = true;
       xkb.layout = "br";
-      desktopManager.gnome.enable = true;
-      displayManager = {
-        gdm.enable = true;
-        autoLogin = {
-          enable = true;
-          user = "max";
-        };
-      };
+
     };
 
     printing.enable = true;
@@ -223,37 +228,37 @@
 
   nixpkgs.config.allowBroken = true;
 
-  programs.ssh.extraConfig = ''
-    Host eu.nixbuild.net
-    PubkeyAcceptedKeyTypes ssh-ed25519
-    ServerAliveInterval 60
-    IPQoS throughput
-    IdentityFile /home/max/.ssh/my-nixbuild-key
-  '';
+  # programs.ssh.extraConfig = ''
+  # Host eu.nixbuild.net
+  # PubkeyAcceptedKeyTypes ssh-ed25519
+  # ServerAliveInterval 60
+  # IPQoS throughput
+  # IdentityFile /home/max/.ssh/my-nixbuild-key
+  # '';
 
-  programs.ssh.knownHosts = {
-    nixbuild = {
-      hostNames = [ "eu.nixbuild.net" ];
-      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAekjki0mgMAzN8/qMixizRHBwDVc+nY7OjibU9vcz8F my-key-comment";
-    };
-  };
+  # programs.ssh.knownHosts = {
+  # nixbuild = {
+  # hostNames = [ "eu.nixbuild.net" ];
+  # publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAekjki0mgMAzN8/qMixizRHBwDVc+nY7OjibU9vcz8F my-key-comment";
+  # };
+  # };
 
-  nix = {
-    distributedBuilds = true;
-    buildMachines = [
-      {
-        hostName = "eu.nixbuild.net";
-        system = "x86_64-linux";
-        maxJobs = 100;
-        supportedFeatures = [
-          "benchmark"
-          "big-parallel"
-        ];
-      }
-    ];
-  };
+  # nix = {
+  # distributedBuilds = true;
+  # buildMachines = [
+  # {
+  # hostName = "eu.nixbuild.net";
+  # system = "x86_64-linux";
+  # maxJobs = 100;
+  # supportedFeatures = [
+  # "benchmark"
+  # "big-parallel"
+  # ];
+  # }
+  # ];
+  # };
 
   services.gnome.gnome-keyring.enable = lib.mkForce false;
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 }

@@ -6,6 +6,7 @@ with pkgs;
   gnome-tweaks
   gnome-applets
   gnome-nettool
+  gnome-keyring
 
   # Extensões
   gnomeExtensions.open-bar

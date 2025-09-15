@@ -23,4 +23,5 @@ with pkgs;
   shellhub-agent
   gitkraken
   jetbrains.pycharm-community-src
+  smartgit
 ]
