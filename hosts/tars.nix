@@ -258,7 +258,5 @@
   # ];
   # };
 
-  services.gnome.gnome-keyring.enable = lib.mkForce false;
-
   system.stateVersion = "25.11";
 }
