@@ -48,12 +48,18 @@
     inputs@{
       self,
       nixpkgs,
+      systems,
       home-manager,
       flake-parts,
+      treefmt-nix,
       nix-github-actions,
       git-hooks-nix,
       ...
     }:
+    let
+      eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
+      treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
+    in
     flake-parts.lib.mkFlake { inherit inputs; } {
 
       imports = [

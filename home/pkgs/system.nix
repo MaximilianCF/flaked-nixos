@@ -17,4 +17,5 @@ with pkgs;
   deadnix
   gnuplot
   gv
+  nix-doc
 ]
