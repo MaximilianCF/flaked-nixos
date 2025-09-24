@@ -37,7 +37,7 @@ NIX_BINTOOLS='/nix/store/l19cddv64i52rhcwahif8sgyrd3mhiqb-binutils-wrapper-2.44'
 export NIX_BINTOOLS
 NIX_BINTOOLS_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu='1'
 export NIX_BINTOOLS_WRAPPER_TARGET_HOST_x86_64_unknown_linux_gnu
-NIX_BUILD_CORES='8'
+NIX_BUILD_CORES='20'
 export NIX_BUILD_CORES
 NIX_CC='/nix/store/95k9rsn1zsw1yvir8mj824ldhf90i4qw-gcc-wrapper-14.3.0'
 export NIX_CC
@@ -154,7 +154,7 @@ declare -a envHostTargetHooks=('addCMakeParams' 'pkgConfigWrapper_addPkgConfigPa
 declare -a envTargetTargetHooks=()
 declare -a fixupOutputHooks=('if [ -z "${dontPatchELF-}" ]; then patchELF "$prefix"; fi' 'if [[ -z "${noAuditTmpdir-}" && -e "$prefix" ]]; then auditTmpdir "$prefix"; fi' 'if [ -z "${dontGzipMan-}" ]; then compressManPages "$prefix"; fi' '_moveLib64' '_moveSbin' '_moveSystemdUserUnits' 'patchShebangsAuto' '_pruneLibtoolFiles' '_doStrip' )
 flag='-L/nix/store/gi615r79j260ihhzdkhrg6qva9wfrbyy-openssl-3.5.1/lib'
-guess='8'
+guess='20'
 iframework_seen=''
 initialPath='/nix/store/8ksax0a2mxglr5hlkj2dzl556jx7xqn5-coreutils-9.7 /nix/store/l964krgbp613d5jxga2vy5qdssj7zfzj-findutils-4.10.0 /nix/store/s2fvny566vls74p4qm9v3fdqd741fh3f-diffutils-3.12 /nix/store/pmhkmqy0vxk47r6ndh0azybhf6gs6k25-gnused-4.9 /nix/store/vlckk0vnmawq9wwh7ndkrwxlpv4h29yh-gnugrep-3.12 /nix/store/03nvbw411p097h6yxjghc33rbcrjfb9d-gawk-5.3.2 /nix/store/8av8pfs7bnyc6hqj764ns4z1fnr9bva1-gnutar-1.35 /nix/store/8gsxxh82rf957ffbsk0q9670nhvl5lia-gzip-1.14 /nix/store/6yjb3zdj448rm8qsmpiq3f67kvj5683a-bzip2-1.0.8-bin /nix/store/aqdvlkh0jdwkc22hh5vr9sl6qlw5ha74-gnumake-4.4.1 /nix/store/q7sqwn7i6w2b67adw0bmix29pxg85x3w-bash-5.3p3 /nix/store/856i1ajaci3kmmp15rifacfz3jvn5l3q-patch-2.8 /nix/store/y9kgzp85ykrhd7l691w4djx121qygy68-xz-5.8.1-bin /nix/store/v40ijzz8p2fpk9ihjck3a1ncqaqfmn3c-file-5.45'
 installPhase='cargoInstallHook'

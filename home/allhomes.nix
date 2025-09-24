@@ -40,5 +40,10 @@ in
     frequency = "daily";
   };
 
+  nix.settings = {
+    substituters = [ "https://192.168.150.10" ];
+    trusted-public-keys = [ "cache.192.168.150.10.tld-1:Tw0JRN9jnhck/ieDcxc3wQEUGIfBwrAN/HrHmhpBB1w=" ];
+  };
+
   home.stateVersion = "25.11";
 }

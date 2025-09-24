@@ -10,6 +10,7 @@
   imports = [
     ./hardware-configuration.nix
     ../modules/postgres.nix
+    ../modules/distributed-builds.nix
   ];
 
   boot.loader = {
@@ -121,6 +122,7 @@
       enable = true;
       wheelNeedsPassword = false;
     };
+    pki.certificateFiles = [ ./harmonia.crt ];
   };
 
   nixpkgs.config.allowUnsupportedSystem = true;
@@ -187,6 +189,8 @@
         "root"
         "@wheel"
       ];
+      substituters = [ "https://192.168.150.10" ];
+      trusted-public-keys = [ "cache.192.168.150.10.tld-1:Tw0JRN9jnhck/ieDcxc3wQEUGIfBwrAN/HrHmhpBB1w=" ];
     };
     gc = {
       automatic = true;
@@ -228,35 +232,35 @@
 
   nixpkgs.config.allowBroken = true;
 
-  programs.ssh.extraConfig = ''
-    Host eu.nixbuild.net
-    PubkeyAcceptedKeyTypes ssh-ed25519
-    ServerAliveInterval 60
-    IPQoS throughput
-    IdentityFile /home/max/.ssh/my-nixbuild-key
-  '';
+  # programs.ssh.extraConfig = ''
+  # Host eu.nixbuild.net
+  # PubkeyAcceptedKeyTypes ssh-ed25519
+  # ServerAliveInterval 60
+  # IPQoS throughput
+  # IdentityFile /home/max/.ssh/my-nixbuild-key
+  # '';
 
-  programs.ssh.knownHosts = {
-    nixbuild = {
-      hostNames = [ "eu.nixbuild.net" ];
-      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAekjki0mgMAzN8/qMixizRHBwDVc+nY7OjibU9vcz8F my-key-comment";
-    };
-  };
+  # programs.ssh.knownHosts = {
+  # nixbuild = {
+  # hostNames = [ "eu.nixbuild.net" ];
+  # publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAekjki0mgMAzN8/qMixizRHBwDVc+nY7OjibU9vcz8F my-key-comment";
+  # };
+  # };
 
-  nix = {
-    distributedBuilds = true;
-    buildMachines = [
-      {
-        hostName = "eu.nixbuild.net";
-        system = "x86_64-linux";
-        maxJobs = 100;
-        supportedFeatures = [
-          "benchmark"
-          "big-parallel"
-        ];
-      }
-    ];
-  };
+  # nix = {
+  # distributedBuilds = true;
+  # buildMachines = [
+  # {
+  # hostName = "eu.nixbuild.net";
+  # system = "x86_64-linux";
+  # maxJobs = 100;
+  # supportedFeatures = [
+  # "benchmark"
+  # "big-parallel"
+  # ];
+  # }
+  # ];
+  # };
 
   system.stateVersion = "25.11";
 }
