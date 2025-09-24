@@ -6,4 +6,6 @@ with pkgs;
   spotify-tray
   blender
   inkscape-with-extensions
+  masterpdfeditor
+  texstudio
 ]
