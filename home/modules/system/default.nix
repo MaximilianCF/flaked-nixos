@@ -9,7 +9,6 @@
     ./eza.nix
     ./git.nix
     ./java.nix
-    #./rofi.nix
     #./mise.nix
     ./nh.nix
     ./virtualization.nix

@@ -19,9 +19,7 @@ with pkgs;
   nil
   ruby
   gnumake
-  julia
   shellhub-agent
-  gitkraken
   jetbrains.pycharm-community-src
   smartgit
 ]

@@ -8,7 +8,6 @@ with pkgs;
   capture
   typora
   zotero
-  xscreensaver
   htop
   nix-bash-completions
   tmuxp
