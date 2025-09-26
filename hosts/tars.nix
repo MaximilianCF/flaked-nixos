@@ -13,6 +13,26 @@
     ../modules/distributed-builds.nix
   ];
 
+  nix = {
+    settings = {
+      substituters = [
+        "https://nix-community.cachix.org"
+        "https://numtide.cachix.org"
+        "https://colmena.cachix.org"
+      ];
+
+      # Caches in trusted-substituters can be used by unprivileged users i.e. in
+      # flakes but are not enabled by default.
+      trusted-substituters = config.nix.settings.substituters;
+
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+        "colmena.cachix.org-1:7BzpDnjjH8ki2CT3f6GdOk7QAzPOl+1t3LvTLXqYcSg="
+      ];
+    };
+  };
+
   boot.loader = {
     grub = {
       enable = true;
@@ -147,6 +167,7 @@
 
   environment.systemPackages = with inputs.browser-previews.packages.${pkgs.system}; [
     pkgs.qgnomeplatform-qt6
+    pkgs.direnv
     (pkgs.rWrapper.override {
       packages = with pkgs.rPackages; [
         ggplot2
@@ -189,8 +210,8 @@
         "root"
         "@wheel"
       ];
-      substituters = [ "https://192.168.150.10" ];
-      trusted-public-keys = [ "cache.192.168.150.10.tld-1:Tw0JRN9jnhck/ieDcxc3wQEUGIfBwrAN/HrHmhpBB1w=" ];
+      #substituters = [ "https://192.168.150.10" ];
+      #trusted-public-keys = [ "cache.192.168.150.10.tld-1:Tw0JRN9jnhck/ieDcxc3wQEUGIfBwrAN/HrHmhpBB1w=" ];
     };
     gc = {
       automatic = true;
