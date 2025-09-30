@@ -20,6 +20,6 @@ with pkgs;
   ruby
   gnumake
   shellhub-agent
-  jetbrains.pycharm-community-src
   smartgit
+  code-cursor
 ]

@@ -6,11 +6,13 @@
       "https://cachix.cachix.org"
       "https://nix-community.cachix.org"
       #"https://maximiliancf-flaked-nixos.cachix.org-1"
+      "pre-commit-hooks.cachix.org"
     ];
     extra-trusted-public-keys = [
       "cachix.cachix.org-1:eWNHQldwUO7G2VkjpnjDbWwy4KQ/HNxht7H4SSoMckM="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       #"maximiliancf-flaked-nixos.cachix.org-1:ibsCWwg8df7jeRrdLS7ReWSX3XPzdPRXk3tmWQilshc="
+      "pre-commit-hooks.cachix.org-1:Pkk3Panw5AW24TOv6kz3PvLhlH8puAsJTBbOPmBo7Rc="
 
     ];
   };
@@ -86,7 +88,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            ./hosts/tars.nix
+            ./hosts/tars/tars.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -100,7 +102,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            ./hosts/hal9000.nix
+            ./hosts/hal9000/hal9000.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;

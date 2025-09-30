@@ -17,4 +17,7 @@ with pkgs;
   gnuplot
   gv
   nix-doc
+  git-lfs
+  sops
+  age
 ]
