@@ -9,8 +9,8 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../modules/postgres.nix
-    ../modules/distributed-builds.nix
+    ../../modules/postgres.nix
+    ../../modules/distributed-builds.nix
   ];
 
   nix = {
@@ -142,7 +142,7 @@
       enable = true;
       wheelNeedsPassword = false;
     };
-    pki.certificateFiles = [ ./harmonia.crt ];
+    pki.certificateFiles = [ ../../harmonia.crt ];
   };
 
   nixpkgs.config.allowUnsupportedSystem = true;

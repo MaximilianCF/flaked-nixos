@@ -21,5 +21,5 @@ with pkgs;
   gnumake
   shellhub-agent
   smartgit
-  code-cursor
+  lazygit
 ]
