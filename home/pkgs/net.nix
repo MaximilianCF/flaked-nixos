@@ -12,5 +12,4 @@ with pkgs;
   signal-desktop
   slack
   microsoft-edge
-  kiro
 ]
