@@ -11,6 +11,30 @@
     ../../modules/postgres.nix
   ];
 
+  networking.wireguard.interfaces.wg0 = {
+    ips = [ "10.100.0.2/24" ];
+    privateKeyFile = "/root/wg-client-private.key";
+
+    peers = [
+      {
+        publicKey = "vKroW4OtGr89HkYgzRSV6dcmyphaX0Q3YjEcaySl1Fo=";
+        allowedIPs = [
+          "10.100.0.0/24"
+          "10.0.0.0/24"
+        ]; # VPN + rede interna das VMs
+        endpoint = "65.108.78.93:51820";
+        persistentKeepalive = 25;
+      }
+    ];
+    postSetup = ''
+      echo "nameserver 10.100.0.1" | ${pkgs.openresolv}/bin/resolvconf -a wg0 -m 0
+    '';
+
+    postShutdown = ''
+      ${pkgs.openresolv}/bin/resolvconf -d wg0
+    '';
+  };
+
   boot.loader = {
     grub = {
       enable = true;
@@ -158,6 +182,7 @@
     google-chrome-dev
     pkgs.rstudioWrapper
     pkgs.megasync
+    pkgs.openresolv
   ];
 
   users.users.max = {
