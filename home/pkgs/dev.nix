@@ -22,4 +22,7 @@ with pkgs;
   shellhub-agent
   smartgit
   lazygit
+  lazydocker
+  lazyjournal
+  lazyhetzner
 ]

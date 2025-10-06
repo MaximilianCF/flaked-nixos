@@ -8,7 +8,7 @@
 {
   imports = [
     ./hardware-configuration-hal9000.nix
-    ../modules/postgres.nix
+    ../../modules/postgres.nix
   ];
 
   boot.loader = {
