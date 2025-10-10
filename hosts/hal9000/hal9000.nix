@@ -170,17 +170,17 @@
   };
 
   environment.systemPackages = with inputs.browser-previews.packages.${pkgs.system}; [
-    pkgs.qgnomeplatform-qt6
-    (pkgs.rWrapper.override {
-      packages = with pkgs.rPackages; [
-        ggplot2
-        tidyverse
-        dplyr
-        devtools
-      ];
-    })
+    #pkgs.qgnomeplatform-qt6
+    # (pkgs.rWrapper.override {
+    # packages = with pkgs.rPackages; [
+    # ggplot2
+    # tidyverse
+    # dplyr
+    # devtools
+    # ];
+    # })
     google-chrome-dev
-    pkgs.rstudioWrapper
+    #pkgs.rstudioWrapper
     pkgs.megasync
     pkgs.openresolv
   ];
