@@ -32,9 +32,11 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    nix-ai-tools.url = "github:numtide/nix-ai-tools";
+
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
-    git-hooks-nix = {
+    git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -55,7 +57,7 @@
       flake-parts,
       treefmt-nix,
       nix-github-actions,
-      git-hooks-nix,
+      git-hooks,
       ...
     }:
     let
@@ -65,7 +67,7 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
 
       imports = [
-        inputs.git-hooks-nix.flakeModule
+        inputs.git-hooks.flakeModule
         inputs.treefmt-nix.flakeModule
       ];
 

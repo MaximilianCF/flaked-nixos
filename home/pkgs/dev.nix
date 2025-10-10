@@ -7,8 +7,6 @@ with pkgs;
   github-backup
   github-mcp-server
   gh-copilot
-  codex
-  claude-code
   nixos-shell
   vulnix
   git-review

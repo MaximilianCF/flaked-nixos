@@ -169,21 +169,35 @@
     ];
   };
 
-  environment.systemPackages = with inputs.browser-previews.packages.${pkgs.system}; [
-    #pkgs.qgnomeplatform-qt6
-    # (pkgs.rWrapper.override {
-    # packages = with pkgs.rPackages; [
-    # ggplot2
-    # tidyverse
-    # dplyr
-    # devtools
-    # ];
-    # })
-    google-chrome-dev
-    #pkgs.rstudioWrapper
-    pkgs.megasync
-    pkgs.openresolv
-  ];
+  environment.systemPackages =
+    with pkgs;
+    (lib.attrValues inputs.browser-previews.packages.${pkgs.system})
+    ++ (with inputs.nix-ai-tools.packages.${pkgs.system}; [
+      claude-code
+      opencode
+      gemini-cli
+      qwen-code
+      codex
+    ])
+    ++ (with inputs.browser-previews.packages.${pkgs.system}; [
+      google-chrome-dev
+    ])
+    ++ (with pkgs; [
+      direnv
+      # (pkgs.rWrapper.override {
+      # packages = with pkgs.rPackages; [
+      # ggplot2
+      # tidyverse
+      # dplyr
+      # devtools
+      # Rcpp
+      # ];
+      # })
+      #google-chrome-dev
+      #pkgs.rstudioWrapper
+      megasync
+      cachix
+    ]);
 
   users.users.max = {
     packages = with pkgs; [
