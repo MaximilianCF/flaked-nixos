@@ -174,7 +174,7 @@
     (lib.attrValues inputs.browser-previews.packages.${pkgs.system})
     ++ (with inputs.nix-ai-tools.packages.${pkgs.system}; [
       claude-code
-      opencode
+      #opencode
       gemini-cli
       qwen-code
       codex
@@ -184,17 +184,16 @@
     ])
     ++ (with pkgs; [
       direnv
-      # (pkgs.rWrapper.override {
-      # packages = with pkgs.rPackages; [
-      # ggplot2
-      # tidyverse
-      # dplyr
-      # devtools
-      # Rcpp
-      # ];
-      # })
-      #google-chrome-dev
-      #pkgs.rstudioWrapper
+      (pkgs.rWrapper.override {
+        packages = with pkgs.rPackages; [
+          ggplot2
+          tidyverse
+          dplyr
+          devtools
+          Rcpp
+        ];
+      })
+      rstudioWrapper
       megasync
       cachix
     ]);
@@ -263,35 +262,7 @@
     binfmt = true;
   };
 
-  programs.ssh.extraConfig = ''
-    Host eu.nixbuild.net
-    PubkeyAcceptedKeyTypes ssh-ed25519
-    ServerAliveInterval 60
-    IPQoS throughput
-    IdentityFile /home/max/.ssh/my-nixbuild-key
-  '';
-
-  programs.ssh.knownHosts = {
-    nixbuild = {
-      hostNames = [ "eu.nixbuild.net" ];
-      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAekjki0mgMAzN8/qMixizRHBwDVc+nY7OjibU9vcz8F my-key-comment";
-    };
-  };
-
-  nix = {
-    distributedBuilds = true;
-    buildMachines = [
-      {
-        hostName = "eu.nixbuild.net";
-        system = "x86_64-linux";
-        maxJobs = 100;
-        supportedFeatures = [
-          "benchmark"
-          "big-parallel"
-        ];
-      }
-    ];
-  };
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   system.stateVersion = "25.11";
 }

@@ -20,4 +20,5 @@ with pkgs;
   git-lfs
   sops
   age
+  xdg-utils
 ]
