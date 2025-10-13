@@ -175,17 +175,16 @@
     ])
     ++ (with pkgs; [
       direnv
-      # (pkgs.rWrapper.override {
-      # packages = with pkgs.rPackages; [
-      # ggplot2
-      # tidyverse
-      # dplyr
-      # devtools
-      # Rcpp
-      # ];
-      # })
-      #google-chrome-dev
-      #pkgs.rstudioWrapper
+      (pkgs.rWrapper.override {
+        packages = with pkgs.rPackages; [
+          ggplot2
+          tidyverse
+          dplyr
+          devtools
+          Rcpp
+        ];
+      })
+      pkgs.rstudioWrapper
       megasync
       cachix
     ]);
