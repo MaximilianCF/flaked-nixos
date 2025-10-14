@@ -24,4 +24,6 @@ with pkgs;
   lazyjournal
   lazyhetzner
   warp-terminal
+  docker-compose
+  lazydocker
 ]

@@ -18,18 +18,19 @@
       substituters = [
         "https://nix-community.cachix.org"
         "https://numtide.cachix.org"
+        "http://192.168.150.10:5000"
+        "https://cache.nixos.org"
       ];
-
-      # Caches in trusted-substituters can be used by unprivileged users i.e. in
-      # flakes but are not enabled by default.
-      trusted-substituters = config.nix.settings.substituters;
-
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+        "cache.192.168.150.10.tld-1:I/pqAc2aKM50nhcnMW2dF8K9rzXYToy0babx3sNx0J0="
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       ];
     };
   };
+
+  nix.settings.post-build-hook = "/etc/nix/upload-to-cache.sh";
 
   boot.loader = {
     grub = {
@@ -216,8 +217,6 @@
         "root"
         "@wheel"
       ];
-      #substituters = [ "https://192.168.150.10" ];
-      #trusted-public-keys = [ "cache.192.168.150.10.tld-1:Tw0JRN9jnhck/ieDcxc3wQEUGIfBwrAN/HrHmhpBB1w=" ];
     };
     gc = {
       automatic = true;
@@ -255,6 +254,10 @@
 
   virtualisation.docker = {
     enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
   };
 
   nixpkgs.config.allowBroken = true;

@@ -21,4 +21,7 @@ with pkgs;
   sops
   age
   xdg-utils
+  gpufetch
+  cpu-x
+  tuisky
 ]
