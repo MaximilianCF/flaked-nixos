@@ -1,5 +1,0 @@
-{
-  "azureTerraform.checkTerraformCmd": false,
-  "nixEnvPicker.envFile": "${workspaceFolder}${/}flake.nix",
-  "kiroAgent.configureMCP": "Disabled"
-}
