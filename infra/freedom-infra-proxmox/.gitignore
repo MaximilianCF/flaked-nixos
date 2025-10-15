@@ -1,7 +1,0 @@
-# .gitignore
-tofu/backend.tf
-.direnv
-tofu/.terraform
-tofu/.terraform.lock.hcl
-.pre-commit-config.yaml
-admins/

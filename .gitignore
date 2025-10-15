@@ -6,3 +6,9 @@ result-*
 .RData
 flake.lock
 .direnv
+tofu/backend.tf
+tofu/.terraform.lock.hcl
+.vscode
+.idea
+WARP.md
+infra/*
