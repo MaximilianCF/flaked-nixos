@@ -11,4 +11,5 @@ tofu/.terraform.lock.hcl
 .vscode
 .idea
 WARP.md
+harmonia.crt
 infra/*
