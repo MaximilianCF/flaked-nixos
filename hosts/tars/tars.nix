@@ -10,7 +10,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/postgres.nix
-    ../../modules/distributed-builds.nix
+    #../../modules/distributed-builds.nix
   ];
 
   nix = {
@@ -18,13 +18,13 @@
       substituters = [
         "https://nix-community.cachix.org"
         "https://numtide.cachix.org"
-        "http://192.168.150.10:5000"
+        #"http://192.168.150.10:5000"
         "https://cache.nixos.org"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
-        "cache.192.168.150.10.tld-1:I/pqAc2aKM50nhcnMW2dF8K9rzXYToy0babx3sNx0J0="
+        #"cache.192.168.150.10.tld-1:I/pqAc2aKM50nhcnMW2dF8K9rzXYToy0babx3sNx0J0="
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       ];
     };
@@ -135,14 +135,14 @@
     openssh.enable = true;
   };
 
-  security = {
-    rtkit.enable = true;
-    sudo = {
-      enable = true;
-      wheelNeedsPassword = false;
-    };
-    pki.certificateFiles = [ ../../harmonia.crt ];
-  };
+  # security = {
+  # rtkit.enable = true;
+  # sudo = {
+  # enable = true;
+  # wheelNeedsPassword = false;
+  # };
+  # pki.certificateFiles = [ ../../harmonia.crt ];
+  # };
 
   nixpkgs.config.allowUnsupportedSystem = true;
 
