@@ -4,7 +4,6 @@ result
 result-*
 .Rhistory
 .RData
-flake.lock
 .direnv
 tofu/backend.tf
 tofu/.terraform.lock.hcl
